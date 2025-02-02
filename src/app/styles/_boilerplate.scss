@@ -1,0 +1,69 @@
+@use 'helpers' as *;
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+select,
+textarea,
+optgroup,
+option {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+::placeholder {
+  font-size: fluid(16, 14);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+a:visited {
+  color: inherit;
+}
+
+
+body {
+  @include fluid-text(18, 14);
+  margin: 0;
+  padding: 0;
+  color: var(--color-dark-900);
+  background-color: var(--color-light-100);
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin: 0 auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.error {
+  font-size: rem(14);
+  font-weight: 400;
+  line-height: rem(24);
+  letter-spacing: 0;
+  text-align: left;
+
+  margin-bottom: rem(20);
+  color: var(--color-danger-500);
+}

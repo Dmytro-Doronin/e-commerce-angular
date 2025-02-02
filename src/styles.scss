@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@forward "app/styles/_colors.scss";
+@forward "app/styles/_typography.scss";
+@forward "app/styles/_variables.scss";
+@forward "app/styles/_boilerplate.scss";
+@forward "app/styles/_mixins.scss";
+
+
+@use "app/styles/functions";
+@use "app/styles/variables";
+
