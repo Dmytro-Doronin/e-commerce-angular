@@ -1,0 +1,18 @@
+@use '../../styles/helpers' as *;
+
+
+.navigation {
+  width: var(--nav-width);
+  height: 100%;
+  padding: rem(20);
+
+
+  &__item {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding-block: rem(20);
+  }
+
+}

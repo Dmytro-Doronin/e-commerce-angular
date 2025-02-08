@@ -1,0 +1,31 @@
+@use '../../../styles/helpers' as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  padding-inline: rem(20);
+  padding-block: rem(10);
+  color: var(--color-light-100);
+  text-align: center;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  border-style: solid;
+  border-radius: rem(5);
+  transition: all var(--transition-duration) ease-in-out;
+}
+
+.primary {
+  background: var(--color-indigo-500);
+  border-color: var(--color-indigo-500);
+}
+
+.secondary {
+  background: transparent;
+  border-color: var(--color-indigo-500);
+  color: var(--color-dark-100);
+
+  &:hover {
+    color: var(--color-light-100);
+  }
+}

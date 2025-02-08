@@ -1,7 +1,14 @@
 @use 'helpers' as *;
 
 :root {
-  --header-height: #{rem(60)};
-  --container-width: #{rem(1140)};
+  --header-height: #{rem(80)};
+  --container-width: #{rem(1280)};
   --container-padding-x: #{rem(10)};
+  --nav-width: #{rem(300)};
+
+
+  --font-family-base: 'Inter', sans-serif;
+  --font-family-accent: 'Kumbh Sans', sans-serif;
+
+  --transition-duration: 0.2s;
 }

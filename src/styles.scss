@@ -1,10 +1,9 @@
-@forward "app/styles/_colors.scss";
-@forward "app/styles/_typography.scss";
-@forward "app/styles/_variables.scss";
-@forward "app/styles/_boilerplate.scss";
-@forward "app/styles/_mixins.scss";
 
+@use "app/styles/colors";
+@use "app/styles/typography";
+@use "app/styles/boilerplate";
 
-@use "app/styles/functions";
+@use "app/styles/helpers/functions";
+@use "app/styles/helpers/mixins";
 @use "app/styles/variables";
-
+@use 'app/styles/fonts';

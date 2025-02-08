@@ -2,12 +2,109 @@
 
 
 .header {
+  position: sticky;
+  display: flex;
   width: 100%;
-
+  height: var(--header-height);
+  background-color: var(--color-dark-700);
+  box-shadow: 0 rem(1) rem(2) rgba(0,0,0,.1);
   &__inner {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
   }
 
+  &__control-main {
+    display: flex;
+    align-items: center;
+    gap: rem(30);
+  }
+
+  &__logo {
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__burger-button {
+    @include square(rem(34));
+
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: rem(8.5) rem(4.25);
+    color: var(--color-dark-100);
+    background-color: transparent;
+    border: none;
+
+    @include hover {
+      color: var(--color-light-100);
+    }
+
+    @include mobile-above {
+      display: none;
+    }
+
+    &.is-active {
+      .header__burger-button_line {
+        &:first-child {
+          rotate: 45deg;
+          transform-origin: 0;
+          translate: 0.25em -0.1em;
+        }
+
+        &:nth-child(2) {
+          rotate: -45deg;
+        }
+
+        &:last-child {
+          width: 0;
+        }
+      }
+    }
+
+    &_line {
+      width: 100%;
+      height: rem(2);
+      border-radius: 1rem;
+      background-color: currentColor;
+      transition-duration: var(--transition-duration);
+
+      &:last-child {
+        width: 55%;
+        align-self: end;
+      }
+    }
+  }
+
+  &__menu {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: var(--header-height);
+    transform: translateX(-100%);
+    border-right: 1px solid var(--color-dark-900);
+    height: calc(100vh - var(--header-height));
+    color: var(--color-dark-900);
+    transition: transform var(--transition-duration);
+    background-color: var(--color-dark-700);
+
+    @include mobile-above {
+      display: none;
+    }
+
+    &.active {
+      transform: translateX(0);
+      visibility: visible;
+    }
+  }
+
 }
+
+
+

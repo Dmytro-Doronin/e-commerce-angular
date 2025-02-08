@@ -15,16 +15,6 @@
   visibility: visible;
 }
 
-@mixin flex-center($isInline: false) {
-  @if $isInline {
-    display: inline-flex;
-  } @else  {
-    display: flex;
-  }
-
-  justify-content: center;
-  align-items: center;
-}
 
 @mixin abs-center {
   position: absolute;
@@ -61,38 +51,4 @@
   clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
-}
-
-//@mixin full-vw-centered-line(
-//  $property: top,
-//  $left: 50%,
-//  $right: auto,
-//  $translate: -50%
-//) {
-//  position: relative;
-//
-//  &::before {
-//    content: '';
-//    position: absolute;
-//    left: $left;
-//    right: $right;
-//    #{$property}: 0;
-//    translate: $translate;
-//    width: var(--100vw);
-//    height: rem(1);
-//    background-color: var(--color-dark-15);
-//  }
-//}
-
-@mixin full-vw-centered-line($property: top) {
-  position: relative;
-
-  &::before {
-    @include abs-x;
-    content: '';
-    #{$property}: 0;
-    width: 100vw;
-    height: rem(1);
-    background-color: var(--color-dark-15);
-  }
 }

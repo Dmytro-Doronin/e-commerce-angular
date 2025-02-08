@@ -1,16 +1,23 @@
-import { Component } from '@angular/core'
-import { MatToolbar } from '@angular/material/toolbar'
-import { MatIcon } from '@angular/material/icon'
-import { MatButton } from '@angular/material/button'
-import { MatBadge } from '@angular/material/badge'
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
+import { LogoComponent } from '../logo/logo.component'
+import { NavigationComponent } from '../navigation/navigation.component'
+import { ButtonComponent } from '../ui/button/button.component'
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbar, MatIcon, MatButton, MatBadge],
+  imports: [LogoComponent, NavigationComponent, ButtonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  cartCount = 0
+  isOpen = input<boolean>(false)
+  isOpenChange = output<boolean>()
+
+  onMenuClicked() {
+    console.log('menu clicked')
+    this.isOpenChange.emit(!this.isOpen())
+    console.log(this.isOpen())
+  }
 }

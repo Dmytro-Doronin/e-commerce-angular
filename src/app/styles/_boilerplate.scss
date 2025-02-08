@@ -38,32 +38,32 @@ a {
 }
 
 
-a:visited {
-  color: inherit;
+ul,
+li {
+  list-style: none;
 }
-
 
 body {
   @include fluid-text(18, 14);
   margin: 0;
   padding: 0;
-  color: var(--color-dark-900);
-  background-color: var(--color-light-100);
+
+  letter-spacing: -0.03em;
+  font-family: var(--font-family-base);
+  color: var(--color-light-100);
+}
+
+.link {
+  color: var(--color-dark-100);
+  transition: color var(--transition-duration) ease-in-out;
+  &:hover {
+    color: var(--color-light-100);
+  }
 }
 
 .container {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
-  margin: 0 auto;
+  margin-inline: auto;
   padding-inline: var(--container-padding-x);
 }
 
-.error {
-  font-size: rem(14);
-  font-weight: 400;
-  line-height: rem(24);
-  letter-spacing: 0;
-  text-align: left;
-
-  margin-bottom: rem(20);
-  color: var(--color-danger-500);
-}
