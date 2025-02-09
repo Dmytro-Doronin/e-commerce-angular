@@ -1,4 +1,22 @@
 <div class="app">
   <app-header [(isOpen)]="isMenuOpen"></app-header>
+  <app-aside
+    [navigationTemplate]="navigationContent"
+    [contentTemplate]="asideContent"
+  >
+  </app-aside>
 </div>
 
+
+<ng-template #navigationContent>
+  <app-navigation [categories]="categories" [variant]="'a-side'"></app-navigation>
+</ng-template>
+
+<ng-template #asideContent>
+    <h2 class="a-side__content-title">Hello</h2>
+    <ul>
+      <li>Towar1</li>
+      <li>Towar2</li>
+      <li>Towar3</li>
+    </ul>
+</ng-template>

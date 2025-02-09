@@ -1,17 +1,26 @@
-<nav class="navigation">
-  <ul class="navigation__list">
-    <li class="navigation__item">
-      <a href="#" class="link">Link</a>
-    </li>
-    <li class="navigation__item">
-      <a href="#" class="link">Link</a>
-    </li>
-    <li class="navigation__item">
-      <a href="#" class="link">Link</a>
-    </li>
-    <li class="navigation__item">
-      <a href="#" class="link">Link</a>
-    </li>
-  </ul>
-</nav>
+@if (categories(); as categories) {
+  <nav class="navigation" [ngClass]="variant()">
+    <ul class="navigation__list">
+      @for ( category of categories; track category) {
+        <li class="navigation__item">
+          <a href="#" class="navigation__link">{{category}}</a>
+        </li>
+      }
+      <!--    <li class="navigation__item">-->
+      <!--      <a href="#" class="navigation__link">Инструменты</a>-->
+      <!--    </li>-->
+      <!--    <li class="navigation__item">-->
+      <!--      <a href="#" class="navigation__link">Link</a>-->
+      <!--    </li>-->
+      <!--    <li class="navigation__item">-->
+      <!--      <a href="#" class="navigation__link">Link</a>-->
+      <!--    </li>-->
+      <!--    <li class="navigation__item">-->
+      <!--      <a href="#" class="navigation__link">Link</a>-->
+      <!--    </li>-->
+    </ul>
+  </nav>
+}
+
+
 

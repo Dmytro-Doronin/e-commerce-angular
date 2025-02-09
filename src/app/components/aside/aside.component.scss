@@ -1,0 +1,30 @@
+@use '../../styles/helpers' as *;
+
+.a-side {
+  display: flex;
+  color: inherit;
+  height: 90vh;
+  box-shadow: 0 rem(13) rem(19) rgba(0, 0, 0, 0.07);
+
+  &__navigation {
+    padding-block: rem(10);
+    width: var(--nav-width);
+    height: 100%;
+    border-right: rem(1) solid rgba(0, 0, 0, 0.07);
+  }
+
+  &__content {
+    width: 100%;
+    padding-block: rem(10);
+
+    &-title {
+      color: blue;
+      margin-bottom: rem(10);
+    }
+  }
+}
+
+.a-side__content-title {
+  color: blue;
+  margin-bottom: rem(10);
+}
