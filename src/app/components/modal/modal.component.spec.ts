@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AsideComponent } from './aside.component'
+import { ModalComponent } from './modal.component'
 
-describe('AsideComponent', () => {
-  let component: AsideComponent
-  let fixture: ComponentFixture<AsideComponent>
+describe('ModalComponent', () => {
+  let component: ModalComponent
+  let fixture: ComponentFixture<ModalComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AsideComponent],
+      imports: [ModalComponent],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(AsideComponent)
+    fixture = TestBed.createComponent(ModalComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

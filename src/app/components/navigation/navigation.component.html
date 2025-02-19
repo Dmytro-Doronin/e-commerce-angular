@@ -1,26 +1,36 @@
-@if (categories(); as categories) {
+
+@if (categories() | filterNamePipe; as filteredCategories) {
   <nav class="navigation" [ngClass]="variant()">
-    <ul class="navigation__list">
-      @for ( category of categories; track category) {
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">{{category}}</a>
-        </li>
+    <div class="navigation__wrapper">
+      <ul class="navigation__list">
+        @for ( category of filteredCategories; track category) {
+          <li
+            class="navigation__item"
+            (mouseover)="onMouseOver(category)"
+            (focus)="onMouseOver(category)"
+            tabindex="0"
+          >
+            <a href="#" class="navigation__link">{{category}}</a>
+          </li>
+        }
+      </ul>
+      @if (extended()) {
+        @if (categories() | filterSubCategories : activeCategory(); as subCategories) {
+          <div class="navigation__content">
+            <h2 class="navigation__content-title">{{activeCategory()}}</h2>
+            <ul>
+              @for (subCategory of subCategories; track subCategory._id) {
+                <li>{{subCategory.name}}</li>
+              }
+            </ul>
+          </div>
+        }
       }
-      <!--    <li class="navigation__item">-->
-      <!--      <a href="#" class="navigation__link">Инструменты</a>-->
-      <!--    </li>-->
-      <!--    <li class="navigation__item">-->
-      <!--      <a href="#" class="navigation__link">Link</a>-->
-      <!--    </li>-->
-      <!--    <li class="navigation__item">-->
-      <!--      <a href="#" class="navigation__link">Link</a>-->
-      <!--    </li>-->
-      <!--    <li class="navigation__item">-->
-      <!--      <a href="#" class="navigation__link">Link</a>-->
-      <!--    </li>-->
-    </ul>
+    </div>
   </nav>
 }
+
+
 
 
 

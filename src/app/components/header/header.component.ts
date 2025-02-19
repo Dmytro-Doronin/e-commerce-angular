@@ -12,12 +12,15 @@ import { ButtonComponent } from '../ui/button/button.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  isOpen = input<boolean>(false)
+  isOpen = input<boolean>(true)
   isOpenChange = output<boolean>()
+  isNavModalOpen = output()
 
   onMenuClicked() {
-    console.log('menu clicked')
     this.isOpenChange.emit(!this.isOpen())
-    console.log(this.isOpen())
+  }
+
+  onNavModalOpen() {
+    this.isNavModalOpen.emit()
   }
 }

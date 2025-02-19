@@ -1,0 +1,13 @@
+@if (isOpen()) {
+  <div
+    class="modal"
+    (keydown.escape)="onModalClick($event)"
+    (click)="onModalClick($event)"
+    tabindex="0"
+  >
+    <div class="modal__content container">
+      <ng-content></ng-content>
+    </div>
+  </div>
+}
+

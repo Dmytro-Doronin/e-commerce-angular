@@ -1,10 +1,10 @@
-export interface Categories {
+export interface Category {
   _id: string
   name: string
   subCategories: SubCategory[]
 }
 
-interface SubCategory {
+export interface SubCategory {
   _id: string
   name: string
   category: string

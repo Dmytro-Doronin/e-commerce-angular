@@ -1,6 +1,6 @@
-import { Categories } from './categories.interface'
+import { Category } from './categories.interface'
 
-export const categoriesMock: Categories[] = [
+export const categoriesMock: Category[] = [
   {
     _id: '5fafab3aff786e49226649fc',
     name: 'Инструменты',
