@@ -10,7 +10,7 @@ export class FilterSubCategoriesPipe implements PipeTransform {
     if (!categories?.length) {
       return []
     }
-
+    console.log(term)
     const category = categories.find(item => item.name === term)
 
     return category ? category.subCategories : []

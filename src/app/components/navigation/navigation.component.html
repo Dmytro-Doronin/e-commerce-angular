@@ -6,6 +6,7 @@
         @for ( category of filteredCategories; track category) {
           <li
             class="navigation__item"
+            [class.navigation__link--active]="category === activeCategory()"
             (mouseover)="onMouseOver(category)"
             (focus)="onMouseOver(category)"
             tabindex="0"
@@ -18,9 +19,11 @@
         @if (categories() | filterSubCategories : activeCategory(); as subCategories) {
           <div class="navigation__content">
             <h2 class="navigation__content-title">{{activeCategory()}}</h2>
-            <ul>
+            <ul class="navigation__content-list">
               @for (subCategory of subCategories; track subCategory._id) {
-                <li>{{subCategory.name}}</li>
+                <li class="navigation__content-item">
+                  <a href="#" class="navigation__content-link">{{subCategory.name}}</a>
+                </li>
               }
             </ul>
           </div>

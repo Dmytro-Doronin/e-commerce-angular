@@ -1,17 +1,30 @@
 @use '../../styles/helpers' as *;
 
+
 .modal {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   padding-top: var(--header-height);
   z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
   &__content {
     background-color: var(--color-light-100);
     box-shadow: 0 rem(13) rem(19) rgba(0, 0, 0, 0.07);
     border-radius: rem(5);
     padding-block: rem(10);
     z-index: 10;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
+}
+
+.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
 

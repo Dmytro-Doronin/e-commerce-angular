@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core'
 import { NgClass } from '@angular/common'
 import { Category } from '../../shared/categories.interface'
 import { FilterNamePipe } from '../../shared/pipes/filter-name/filter-name.pipe'
@@ -18,6 +18,18 @@ export class NavigationComponent {
   variant = input<'a-side' | 'burger'>('a-side')
 
   activeCategory = signal<string | null>(null)
+
+  constructor() {
+    effect(
+      () => {
+        const categoryList = this.categories()
+        if (categoryList && this.activeCategory() === null) {
+          this.activeCategory.set(categoryList[0].name)
+        }
+      },
+      { allowSignalWrites: true }
+    )
+  }
 
   onMouseOver(category: string) {
     this.activeCategory.set(category)

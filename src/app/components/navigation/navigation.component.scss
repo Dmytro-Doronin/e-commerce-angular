@@ -3,7 +3,6 @@
 
 .navigation {
   height: 100%;
-  padding-right: rem(10);
 
   &__wrapper {
     display: flex;
@@ -24,19 +23,20 @@
   &__link {
     display: inline-block;
     justify-content: space-between;
+    text-align: start;
     width: 100%;
     height: 100%;
     padding: rem(20);
     transition: all 0.3s ease;
+    &--active {
+      background-color: rgba(var(--color-indigo-100-rgba), 0.2);
+    }
   }
 
   &.a-side .navigation__link {
     position: relative;
     color: var(--color-dark-900);
     border-radius: rem(4);
-    &:hover {
-      background-color: rgba(var(--color-indigo-100-rgba), 0.2);
-    }
   }
 
   &.burger .navigation__link {
@@ -47,4 +47,26 @@
       color: var(--color-light-100);
     }
   }
+
+  &__content {
+    width: 100%;
+    &-title {
+      margin-bottom: rem(10);
+    }
+    &-list {
+      display: flex;
+      flex-direction: column;
+    }
+    &-item {
+      padding: rem(5) rem(5) rem(5) 0;
+    }
+    &-link {
+      color: var(--color-dark-500);
+      transition: all 0.3s ease;
+      &:hover {
+        color:  var(--color-indigo-500);
+      }
+    }
+  }
 }
+

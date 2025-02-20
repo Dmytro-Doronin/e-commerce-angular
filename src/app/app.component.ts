@@ -20,6 +20,7 @@ export class AppComponent {
 
   openMenuModal() {
     this.isOpenNavigationModal.set(true)
+    console.log(this.isOpenNavigationModal())
   }
 
   closeMenuModal() {
