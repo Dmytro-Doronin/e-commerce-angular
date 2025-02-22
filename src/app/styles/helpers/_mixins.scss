@@ -40,6 +40,10 @@
   height: $size;
 }
 
+@mixin hover-transition {
+  transition: all var(--transition-duration) ease-in-out;
+}
+
 @mixin visually-hidden {
   position: absolute !important;
   width: 1px !important;

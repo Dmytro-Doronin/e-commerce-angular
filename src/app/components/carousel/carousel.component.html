@@ -1,0 +1,15 @@
+<div class="swiper" #swiperContainer>
+  <div class="swiper-wrapper">
+
+    @for (slide of slides(); track slide.img) {
+      <div class="swiper-slide">
+        <img [src]="slide.img" alt="Slide">
+      </div>
+    }
+  </div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <div class="swiper-pagination"></div>
+</div>

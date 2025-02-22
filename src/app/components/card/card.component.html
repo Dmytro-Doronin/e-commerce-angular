@@ -1,0 +1,11 @@
+@if (card(); as card) {
+  <div class="card">
+    <img class="card__img" [src]="card.images[0].url" alt="">
+    <a class="card__title" href="#">
+      <h3>{{card.name}}</h3>
+    </a>
+
+  </div>
+}
+
+

@@ -1,1 +1,10 @@
+@use './styles/helpers' as *;
 
+
+.app {
+  background-color: var(--color-main);
+  height: 100vh;
+}
+.content {
+  padding-top: rem(20);
+}

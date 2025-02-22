@@ -1,9 +1,13 @@
 <div class="app">
   <app-header [(isOpen)]="isMenuOpen" (isNavModalOpen)="openMenuModal()"></app-header>
-</div>
 
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
 
 <app-modal [(isOpen)]="isOpenNavigationModal">
   <app-navigation [categories]="categories" [variant]="'a-side'" [extended]="true"></app-navigation>
 </app-modal>
+
 
