@@ -1,0 +1,23 @@
+@use '../../styles/helpers' as *;
+
+
+.section {
+  padding-block: rem(120);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: rem(30);
+  }
+
+  &__title {
+    font-size: rem(35);
+    color: var(--color-dark-500);
+  }
+
+  &__separator {
+    opacity: 0.5;
+    margin-bottom: rem(50);
+  }
+}

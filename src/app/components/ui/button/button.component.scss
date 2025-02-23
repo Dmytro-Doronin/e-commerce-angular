@@ -18,6 +18,12 @@
 .primary {
   background: var(--color-indigo-500);
   border-color: var(--color-indigo-500);
+
+  &:hover {
+    background: var(--color-indigo-100);
+    border-color: var(--color-indigo-100);
+  }
+
 }
 
 .secondary {

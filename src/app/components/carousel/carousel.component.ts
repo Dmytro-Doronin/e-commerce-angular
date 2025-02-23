@@ -20,7 +20,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules'
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent implements AfterViewInit {
-  slides = input<{ img: string }[]>()
+  slides = input<string[]>()
   readonly swiperRef = viewChild.required('swiperContainer', {
     read: ViewContainerRef,
   })

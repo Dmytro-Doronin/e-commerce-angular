@@ -1,9 +1,9 @@
 <div class="swiper" #swiperContainer>
   <div class="swiper-wrapper">
 
-    @for (slide of slides(); track slide.img) {
+    @for (slide of slides(); track slide) {
       <div class="swiper-slide">
-        <img [src]="slide.img" alt="Slide">
+        <img [src]="slide" alt="Slide">
       </div>
     }
   </div>

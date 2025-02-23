@@ -1,0 +1,9 @@
+
+<section class="section">
+  <div class="section__header">
+    <h2 class="section__title">{{title()}}</h2>
+    <ng-content select="[section-button]"></ng-content>
+  </div>
+  <hr class="separator"/>
+  <ng-content select="[section-body]"></ng-content>
+</section>

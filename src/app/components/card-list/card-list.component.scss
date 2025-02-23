@@ -1,0 +1,30 @@
+@use '../../styles/helpers' as *;
+
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: rem(400);
+  padding-top: rem(20);
+  //gap: rem(10);
+}
+
+svg {
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+svg.ng-leave {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+svg.ng-enter {
+  opacity: 1;
+  transform: scale(1);
+}
