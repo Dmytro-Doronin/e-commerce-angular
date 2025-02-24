@@ -1,13 +1,32 @@
 <div class="container">
   <app-carousel [slides]="slides"></app-carousel>
-
+</div>
   <app-section [title]="'Suggestion for you'">
-    <app-card-list section-body [products]="products()"></app-card-list>
+    <app-card-list section-body [products]="suggestedProducts()"></app-card-list>
     <app-button section-button [variant]="'primary'">View all products</app-button>
   </app-section>
 
-  <app-section [title]="'Categories'">
-    <app-card-list section-body [products]="products()"></app-card-list>
+  <app-section [isAlternative]="true" [title]="'Categories'">
+
+    @if (popularCategories(); as categories) {
+      <div section-body class="popular-categories">
+        <div
+          *ngFor="let category of categories; let i = index"
+          class="popular-categories__item"
+          [ngClass]="categoryGridAreas[i]"
+          [ngStyle]="{ 'background-image': 'url(' + category.image + ')' }"
+        >
+          <div class="popular-categories__info">
+            <span class="popular-categories__title">{{category.name}}</span>
+            <a class="popular-categories__link" href="#">More details</a>
+          </div>
+        </div>
+      </div>
+    } @else if (!popularCategories()) {
+      <div section-body>List of category is empty</div>
+    } @else {
+      <app-loader section-body></app-loader>
+    }
   </app-section>
 
-</div>
+

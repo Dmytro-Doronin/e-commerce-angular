@@ -4,6 +4,7 @@
 .section {
   padding-block: rem(120);
 
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -20,4 +21,8 @@
     opacity: 0.5;
     margin-bottom: rem(50);
   }
+}
+
+.alternative {
+  background-color: var(--color-main-gray);
 }

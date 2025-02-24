@@ -10,4 +10,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core'
 })
 export class SectionComponent {
   title = input<string>('Section')
+  isAlternative = input<boolean>(false)
 }
