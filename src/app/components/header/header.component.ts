@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  output,
+  TemplateRef,
+} from '@angular/core'
 import { LogoComponent } from '../logo/logo.component'
 import { NavigationComponent } from '../navigation/navigation.component'
 import { ButtonComponent } from '../ui/button/button.component'
+import { categoriesMock } from '../../shared/categories.mock'
+import { ModalService } from '../../shared/services/modal/modal.service'
+import { Category } from '../../shared/categories.interface'
 
 @Component({
   selector: 'app-header',
@@ -12,9 +22,18 @@ import { ButtonComponent } from '../ui/button/button.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  private readonly modalService = inject(ModalService)
+
   isOpen = input<boolean>(true)
   isOpenChange = output<boolean>()
   isNavModalOpen = output()
+
+  openModal(template: TemplateRef<{ $implicit: Category[] }>) {
+    this.modalService.openModal({
+      template,
+      context: { $implicit: this.categories },
+    })
+  }
 
   onMenuClicked() {
     this.isOpenChange.emit(!this.isOpen())
@@ -23,4 +42,6 @@ export class HeaderComponent {
   onNavModalOpen() {
     this.isNavModalOpen.emit()
   }
+
+  protected readonly categories = categoriesMock
 }

@@ -21,6 +21,11 @@
     opacity: 0.5;
     margin-bottom: rem(50);
   }
+
+  &__content {
+    min-height: rem(600);
+    position: relative;
+  }
 }
 
 .alternative {

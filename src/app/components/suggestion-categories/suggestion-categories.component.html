@@ -1,0 +1,18 @@
+
+@if (popularCategories(); as categories) {
+  <div section-body class="popular-categories">
+    @for ( category of categories; track category.id; let i = $index) {
+      <div
+        class="popular-categories__item"
+        [ngClass]="categoryGridAreas[i]"
+        [ngStyle]="{ 'background-image': 'url(' + category.image + ')' }"
+      >
+        <div class="popular-categories__info">
+          <span class="popular-categories__title">{{category.name}}</span>
+          <a class="popular-categories__link" href="#">More details</a>
+        </div>
+      </div>
+    }
+  </div>
+}
+

@@ -1,13 +1,16 @@
-
+@if (getTemplateOptions(); as templateOptions ) {
   <div
     class="modal"
-    [class.is-visible]="isOpen()"
     (keydown.escape)="onModalClick($event)"
     (click)="onModalClick($event)"
     tabindex="0"
   >
-    <div class="modal__content container" [class.is-visible]="isOpen()" >
-      <ng-content></ng-content>
+    <div class="modal__content container">
+      <ng-container
+        *ngTemplateOutlet="templateOptions.template; context: templateOptions.context"
+      ></ng-container>
     </div>
   </div>
+}
+
 

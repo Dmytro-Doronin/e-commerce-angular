@@ -1,6 +1,7 @@
 @use '../../styles/helpers' as *;
 
 .loader {
+  @include abs-center;
   width: rem(50);
   aspect-ratio: 1;
   border-radius: 50%;

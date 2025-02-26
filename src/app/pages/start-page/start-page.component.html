@@ -6,27 +6,14 @@
     <app-button section-button [variant]="'primary'">View all products</app-button>
   </app-section>
 
-  <app-section [isAlternative]="true" [title]="'Categories'">
 
-    @if (popularCategories(); as categories) {
-      <div section-body class="popular-categories">
-        <div
-          *ngFor="let category of categories; let i = index"
-          class="popular-categories__item"
-          [ngClass]="categoryGridAreas[i]"
-          [ngStyle]="{ 'background-image': 'url(' + category.image + ')' }"
-        >
-          <div class="popular-categories__info">
-            <span class="popular-categories__title">{{category.name}}</span>
-            <a class="popular-categories__link" href="#">More details</a>
-          </div>
-        </div>
-      </div>
-    } @else if (!popularCategories()) {
-      <div section-body>List of category is empty</div>
-    } @else {
-      <app-loader section-body></app-loader>
-    }
-  </app-section>
+<app-section [isAlternative]="true" [title]="'Categories'">
+    <app-suggestion-categories
+      section-body
+      [popularCategories]="popularCategories()"
+      [isLoading]="false">
+    </app-suggestion-categories>
+</app-section>
+
 
 
