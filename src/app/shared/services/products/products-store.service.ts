@@ -10,17 +10,25 @@ export class ProductsStoreService {
   private readonly productsApiService = inject(ProductsApiService)
   private loadSuggestionProductsSubscription: Subscription | null = null
   suggestionProducts$ = signal<Product[] | null>(null)
+  suggestionProductsLoading$ = signal<boolean>(false)
 
   loadSuggestionProducts() {
     if (this.loadSuggestionProductsSubscription) {
       this.loadSuggestionProductsSubscription.unsubscribe()
     }
-
-    this.loadSuggestionProductsSubscription = this.productsApiService
-      .getProducts()
-      .subscribe(products => {
+    this.suggestionProductsLoading$.set(true)
+    this.loadSuggestionProductsSubscription = this.productsApiService.getProducts().subscribe({
+      next: products => {
         this.suggestionProducts$.set(products.slice(0, 6))
         this.loadSuggestionProductsSubscription = null
-      })
+        this.suggestionProductsLoading$.set(false)
+      },
+      error: error => {
+        console.log(error)
+      },
+      complete: () => {
+        this.suggestionProductsLoading$.set(false)
+      },
+    })
   }
 }

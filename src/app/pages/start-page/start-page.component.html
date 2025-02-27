@@ -1,17 +1,21 @@
 <div class="container">
-  <app-carousel [slides]="slides"></app-carousel>
+  <app-carousel [delay]="5000" [slides]="slides"></app-carousel>
 </div>
-  <app-section [title]="'Suggestion for you'">
-    <app-card-list section-body [products]="suggestedProducts()"></app-card-list>
-    <app-button section-button [variant]="'primary'">View all products</app-button>
-  </app-section>
+<app-section [title]="'Suggestion for you'">
+  <app-card-list
+    section-body
+    [products]="suggestedProducts()"
+    [loading]='suggestedProductsLoading()'
+  ></app-card-list>
+  <app-button section-button [variant]="'primary'">View all products</app-button>
+</app-section>
 
 
 <app-section [isAlternative]="true" [title]="'Categories'">
     <app-suggestion-categories
       section-body
       [popularCategories]="popularCategories()"
-      [isLoading]="false">
+      [isLoading]="popularCategoriesLoading()">
     </app-suggestion-categories>
 </app-section>
 

@@ -14,5 +14,9 @@
       </div>
     }
   </div>
+} @else if (isLoading()) {
+  <app-loader></app-loader>
+} @else {
+  <span>Popular categories list is empty</span>
 }
 

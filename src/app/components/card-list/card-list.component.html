@@ -3,5 +3,9 @@
       @for (product of products; track product.id) {
         <app-card [card]="product"></app-card>
       }
+  } @else if (loading()) {
+    <app-loader></app-loader>
+  } @else {
+    <span>Card list is empty</span>
   }
 </div>

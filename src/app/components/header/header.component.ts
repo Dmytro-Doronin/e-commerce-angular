@@ -29,18 +29,18 @@ export class HeaderComponent {
   isNavModalOpen = output()
 
   openModal(template: TemplateRef<{ $implicit: Category[] }>) {
-    this.modalService.openModal({
-      template,
-      context: { $implicit: this.categories },
-    })
+    if (this.modalService.getModalOptions()) {
+      this.modalService.closeModal()
+    } else {
+      this.modalService.openModal({
+        template,
+        context: { $implicit: this.categories },
+      })
+    }
   }
 
   onMenuClicked() {
     this.isOpenChange.emit(!this.isOpen())
-  }
-
-  onNavModalOpen() {
-    this.isNavModalOpen.emit()
   }
 
   protected readonly categories = categoriesMock

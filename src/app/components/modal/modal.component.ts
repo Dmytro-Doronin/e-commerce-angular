@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   HostListener,
   inject,
   input,
@@ -24,6 +25,16 @@ export class ModalComponent {
   isOpen = input<boolean>(false)
   isOpenChange = output<boolean>()
   private readonly modalService = inject(ModalService)
+  private scrollBarWidth = 0
+  constructor() {
+    effect(() => {
+      if (this.getTemplateOptions()?.template) {
+        this.lockScroll()
+      } else {
+        this.unlockScroll()
+      }
+    })
+  }
 
   getTemplateOptions(): ReturnType<ModalService['getModalOptions']> {
     return this.modalService.getModalOptions()
@@ -40,5 +51,16 @@ export class ModalComponent {
     if (target.classList.contains('modal')) {
       this.onModalClose()
     }
+  }
+
+  private lockScroll() {
+    this.scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
+    document.body.style.paddingRight = `${this.scrollBarWidth}px`
+    document.body.style.overflow = 'hidden'
+  }
+
+  private unlockScroll() {
+    document.body.style.paddingRight = ''
+    document.body.style.overflow = 'auto'
   }
 }

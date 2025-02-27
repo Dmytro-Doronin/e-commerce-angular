@@ -26,7 +26,9 @@ export class StartPageComponent implements OnInit {
   categoriesStoreService = inject(CategoriesStoreService)
 
   readonly suggestedProducts = this.productsStoreService.suggestionProducts$
+  readonly suggestedProductsLoading = this.productsStoreService.suggestionProductsLoading$
   readonly popularCategories = this.categoriesStoreService.popularCategories$
+  readonly popularCategoriesLoading = this.categoriesStoreService.isLoadingPopularCategories$
 
   slides = [
     'https://lemon.school/storage/2023/07/img_7017-780x258.png',

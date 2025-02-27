@@ -1,0 +1,14 @@
+@use '../../styles/helpers' as *;
+
+
+.footer {
+  background-color: var(--color-dark-700);
+  &__inner {
+    display: flex;
+    justify-content: end;
+    padding-block: rem(20);
+  }
+  &__label {
+    color: var(--color-light-100);
+  }
+}
