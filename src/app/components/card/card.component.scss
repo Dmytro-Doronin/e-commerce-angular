@@ -1,19 +1,83 @@
 @use '../../styles/helpers' as *;
 
+//:host {
+//  width: 33.333333333333336%;
+//  flex-basis: 33.333333333333336%;
+//  padding: rem(20) rem(20) 0 rem(20);
+//
+//  @include tablet {
+//    width: 50%;
+//    flex-basis: 50%;
+//  }
+//
+//  //&:nth-child(3n-1),
+//  //&:nth-child(3n-2),
+//  //&:nth-child(3n-3) {
+//  //  padding-right: 0;
+//  //  padding-left: 0;
+//  //}
+//
+//
+//
+//  &:nth-child(3n-1) {
+//    padding-right: 0;
+//    padding-left: 0;
+//
+//  }
+//  &:nth-child(3n-2) {
+//    padding-left: 0;
+//  }
+//
+//  &:nth-child(3n-3) {
+//    padding-right: 0;
+//    padding-left: rem(20);
+//  }
+//}
+
 :host {
-  width: 33.333333333333336%;
-  flex-basis: 33.333333333333336%;
+  width: 33.3333%;
+  flex-basis: 33.3333%;
   padding: rem(20) rem(20) 0 rem(20);
 
-  &:nth-child(3n-1) {
-    padding-right: 0;
-    padding-left: 0;
+  @include tablet {
+    width: 50%;
+    flex-basis: 50%;
+
+    // Полностью сбрасываем `nth-child(3n-*)` на планшетах
+    &:nth-child(3n-1),
+    &:nth-child(3n-2),
+    &:nth-child(3n-3) {
+      padding-right: rem(20);
+      padding-left: rem(20);
+    }
   }
-  &:nth-child(3n-2) {
-    padding-left: 0;
+
+  // Оставляем `nth-child` стили для 3 колонок (desktop)
+  @include tablet-above {
+    &:nth-child(3n-1) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    &:nth-child(3n-2) {
+      padding-left: 0;
+    }
+
+    &:nth-child(3n-3) {
+      padding-right: 0;
+      padding-left: rem(20);
+    }
   }
-  &:nth-child(3n-3) {
-    padding-right: 0;
+
+  @include mobile {
+    width: rem(350);
+    flex-basis: rem(350);
+    padding: 0;
+    padding-bottom: rem(10);
+  }
+  @include mobile-s {
+    width: rem(300);
+    flex-basis: rem(300);
   }
 }
 

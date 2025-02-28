@@ -24,6 +24,7 @@
     background-repeat: no-repeat;
     padding: rem(30);
 
+
     &:before {
       content: "";
       background: var(--color-indigo-500);
@@ -45,7 +46,12 @@
         transform: translateY(0);
       }
     }
+  }
 
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(20);
   }
 
   &__image {

@@ -13,6 +13,11 @@
   border-style: solid;
   border-radius: rem(5);
   @include hover-transition;
+
+  @include mobile-s {
+    padding-inline: rem(10);
+    padding-block: rem(8);
+  }
 }
 
 .primary {
