@@ -1,5 +1,5 @@
 <div class="app">
-  <app-header [(isOpen)]="isMenuOpen"></app-header>
+  <app-header [categories]="categories()" [(isOpen)]="isMenuOpen"></app-header>
 
   <div class="content">
     <router-outlet></router-outlet>

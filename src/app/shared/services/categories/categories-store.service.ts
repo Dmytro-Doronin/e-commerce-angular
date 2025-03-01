@@ -8,9 +8,34 @@ import { Category } from './categories.interface'
 })
 export class CategoriesStoreService {
   categoriesApiService = inject(CategoriesApiService)
+  loadAllCategoriesSubscription: Subscription | null = null
   loadPopularCategoriesSubscription: Subscription | null = null
+  allCategories$ = signal<Category[] | null>(null)
   popularCategories$ = signal<Category[] | null>(null)
+  isLoadingAllCategories$ = signal<boolean>(false)
   isLoadingPopularCategories$ = signal<boolean>(false)
+
+  loadAllCategories() {
+    if (this.loadAllCategoriesSubscription) {
+      this.loadAllCategoriesSubscription.unsubscribe()
+    }
+
+    this.isLoadingAllCategories$.set(true)
+
+    this.loadAllCategoriesSubscription = this.categoriesApiService.getCategories().subscribe({
+      next: categories => {
+        this.allCategories$.set(categories)
+        this.loadPopularCategoriesSubscription = null
+      },
+      error: () => {
+        this.isLoadingAllCategories$.set(false)
+      },
+      complete: () => {
+        this.loadPopularCategoriesSubscription = null
+        this.isLoadingAllCategories$.set(false)
+      },
+    })
+  }
 
   loadPopularCategories() {
     if (this.loadPopularCategoriesSubscription) {

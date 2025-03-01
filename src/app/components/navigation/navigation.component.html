@@ -1,5 +1,5 @@
 
-@if (categories() | filterNamePipe; as filteredCategories) {
+@if (categories(); as filteredCategories) {
   <nav class="navigation" [ngClass]="variant()">
     <div class="navigation__wrapper">
       <ul class="navigation__list">
@@ -11,20 +11,21 @@
             (focus)="onMouseOver(category)"
             tabindex="0"
           >
-            <a href="#" class="navigation__link">{{category}}</a>
+            <a href="#" class="navigation__link">{{category.name}}</a>
           </li>
         }
       </ul>
       @if (extended()) {
-        @if (categories() | filterSubCategories : activeCategory(); as subCategories) {
+        @if (categories()) {
           <div class="navigation__content">
-            <h2 class="navigation__content-title">{{activeCategory()}}</h2>
+            <h2 class="navigation__content-title">{{activeCategory()?.name}}</h2>
             <ul class="navigation__content-list">
-              @for (subCategory of subCategories; track subCategory._id) {
-                <li class="navigation__content-item">
-                  <a href="#" class="navigation__content-link">{{subCategory.name}}</a>
-                </li>
-              }
+              <li class="navigation__content-list-item">
+                <div class="navigation__content-list-wrapper">
+                  <img [src]="activeCategory()?.image" alt="image" class="navigation__content-list-img">
+                </div>
+                <a class="navigation__content-list-link" href="#">See all products of this category</a>
+              </li>
             </ul>
           </div>
         }

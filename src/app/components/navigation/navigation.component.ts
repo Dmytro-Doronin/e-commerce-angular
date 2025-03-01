@@ -1,23 +1,22 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core'
 import { NgClass } from '@angular/common'
-import { Category } from '../../shared/categories.interface'
 import { FilterNamePipe } from '../../shared/pipes/filter-name/filter-name.pipe'
-import { FilterSubCategoriesPipe } from '../../shared/pipes/filter-sub-categories/filter-sub-categories.pipe'
+import { Category } from '../../shared/services/categories/categories.interface'
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [NgClass, FilterNamePipe, FilterSubCategoriesPipe],
+  imports: [NgClass, FilterNamePipe],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
-  categories = input<Category[]>()
+  categories = input<Category[] | null>(null)
   extended = input<boolean>(false)
   variant = input<'a-side' | 'burger'>('a-side')
 
-  activeCategory = signal<string | null>(null)
+  activeCategory = signal<Category | null>(null)
   isActiveCategory = computed(
     () => this.categories() && this.extended() && this.activeCategory() === null
   )
@@ -26,14 +25,14 @@ export class NavigationComponent {
     effect(
       () => {
         if (this.isActiveCategory()) {
-          this.activeCategory.set(this.categories()![0].name)
+          this.activeCategory.set(this.categories()![0])
         }
       },
       { allowSignalWrites: true }
     )
   }
 
-  onMouseOver(category: string) {
+  onMouseOver(category: Category) {
     this.activeCategory.set(category)
   }
 }

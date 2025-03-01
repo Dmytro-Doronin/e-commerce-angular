@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
 import { HeaderComponent } from './components/header/header.component'
-import { categoriesMock } from './shared/categories.mock'
 import { ModalComponent } from './components/modal/modal.component'
-import { Category } from './shared/categories.interface'
 import { RouterOutlet } from '@angular/router'
 import { FooterComponent } from './components/footer/footer.component'
+import { CategoriesStoreService } from './shared/services/categories/categories-store.service'
 
 @Component({
   selector: 'app-root',
@@ -16,5 +15,11 @@ import { FooterComponent } from './components/footer/footer.component'
 })
 export class AppComponent {
   isMenuOpen = signal<boolean>(false)
-  categories: Category[] = categoriesMock
+  // categories: Category[] = categoriesMock
+  private readonly categoriesService = inject(CategoriesStoreService)
+  readonly categories = this.categoriesService.allCategories$
+
+  constructor() {
+    this.categoriesService.loadAllCategories()
+  }
 }

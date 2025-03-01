@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core'
-import { Category } from '../../categories.interface'
+import { Category } from '../../services/categories/categories.interface'
 
 @Pipe({
   name: 'filterNamePipe',
   standalone: true,
 })
 export class FilterNamePipe implements PipeTransform {
-  transform(categories: Category[] | undefined): string[] {
+  transform(categories: Category[] | undefined | null): string[] {
     if (!categories?.length) {
       return []
     }

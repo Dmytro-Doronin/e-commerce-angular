@@ -9,9 +9,8 @@ import {
 import { LogoComponent } from '../logo/logo.component'
 import { NavigationComponent } from '../navigation/navigation.component'
 import { ButtonComponent } from '../ui/button/button.component'
-import { categoriesMock } from '../../shared/categories.mock'
 import { ModalService } from '../../shared/services/modal/modal.service'
-import { Category } from '../../shared/categories.interface'
+import { Category } from '../../shared/services/categories/categories.interface'
 
 @Component({
   selector: 'app-header',
@@ -24,6 +23,7 @@ import { Category } from '../../shared/categories.interface'
 export class HeaderComponent {
   private readonly modalService = inject(ModalService)
 
+  categories = input<Category[] | null>(null)
   isOpen = input<boolean>(true)
   isOpenChange = output<boolean>()
   isNavModalOpen = output()
@@ -34,7 +34,7 @@ export class HeaderComponent {
     } else {
       this.modalService.openModal({
         template,
-        context: { $implicit: this.categories },
+        context: { $implicit: this.categories() },
       })
     }
   }
@@ -42,6 +42,4 @@ export class HeaderComponent {
   onMenuClicked() {
     this.isOpenChange.emit(!this.isOpen())
   }
-
-  protected readonly categories = categoriesMock
 }

@@ -26,6 +26,7 @@ export class ModalComponent {
   isOpenChange = output<boolean>()
   private readonly modalService = inject(ModalService)
   private scrollBarWidth = 0
+
   constructor() {
     effect(() => {
       if (this.getTemplateOptions()?.template) {
