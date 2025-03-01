@@ -114,6 +114,14 @@
     @include hover-transition;
     display: inline-block;
     margin-bottom: rem(10);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: wrap;
+    line-height: 1.5em;
+
     &:hover {
       color: var(--color-indigo-500);
     }

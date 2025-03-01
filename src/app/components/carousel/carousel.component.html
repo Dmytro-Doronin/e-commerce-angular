@@ -1,11 +1,31 @@
 <div class="swiper" #swiperContainer>
   <div class="swiper-wrapper">
 
-    @for (slide of slides(); track slide) {
-      <div class="swiper-slide">
-        <img [src]="slide" alt="Slide">
-      </div>
+    @if (mainVariant()) {
+      @for (slide of slides(); track slide; let index = $index) {
+        <div class="swiper-slide">
+          <div class="swiper__main-wrapper">
+<!--            [ngStyle]="{ 'background-image': 'url(' + slide + ')' }"-->
+            <div class="swiper__main-content">
+                <span class="swiper__main-title">FIND SOMETHING FOR YOURSELF</span>
+              @if (links().length) {
+                <app-button [routerLink]="['/', 'category', links()[index]]">See more</app-button>
+              }
+            </div>
+            <img [src]="slide" alt="Slide" class="swiper__main-image">
+          </div>
+
+        </div>
+      }
+    } @else {
+      @for (slide of slides(); track slide) {
+        <div class="swiper-slide">
+          <img [src]="slide" alt="Slide">
+        </div>
+      }
     }
+
+
   </div>
 
     <div class="swiper-button-prev"></div>

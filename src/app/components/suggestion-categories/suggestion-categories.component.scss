@@ -69,6 +69,15 @@
   }
 
   &__title {
+    display: inline-block;
+    margin-bottom: rem(10);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: wrap;
+
     color: var(--color-light-100);
     font-weight: var(--font-weight-bold);
     margin-bottom: rem(10);

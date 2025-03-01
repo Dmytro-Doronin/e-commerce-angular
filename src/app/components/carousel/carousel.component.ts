@@ -9,18 +9,23 @@ import {
 } from '@angular/core'
 import Swiper from 'swiper'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { NgStyle } from '@angular/common'
+import { ButtonComponent } from '../ui/button/button.component'
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [],
+  imports: [NgStyle, ButtonComponent, RouterLink],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent {
-  slides = input.required<string[]>()
+  mainVariant = input<boolean>(false)
+  slides = input<string[]>([])
+  links = input<string[]>([])
   delay = input<number>()
   private swiperInstance: Swiper | null = null
 
