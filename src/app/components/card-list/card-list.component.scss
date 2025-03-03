@@ -1,13 +1,22 @@
 @use '../../styles/helpers' as *;
 
 
+:host {
+  width: 100%;
+
+}
+
 .card-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   min-height: rem(400);
   padding-top: rem(20);
+
+  @include tablet {
+    justify-content: center;
+  }
+
 }
 
 svg {

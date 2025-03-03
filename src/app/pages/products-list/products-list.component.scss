@@ -1,0 +1,10 @@
+@use '../../styles/helpers' as *;
+
+
+.product-list {
+  padding-bottom: rem(100);
+  &__inner {
+    display: grid;
+    grid-template-columns: rem(300) auto;
+  }
+}

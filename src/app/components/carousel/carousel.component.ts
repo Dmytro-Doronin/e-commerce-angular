@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   input,
   viewChild,
@@ -29,6 +30,8 @@ export class CarouselComponent {
   delay = input<number>()
   private swiperInstance: Swiper | null = null
 
+  slidesLength = computed(() => this.slides().length > 1)
+
   readonly swiperRef = viewChild.required('swiperContainer', {
     read: ViewContainerRef,
   })
@@ -55,10 +58,12 @@ export class CarouselComponent {
       modules: [Navigation, Pagination, Autoplay],
       slidesPerView: 1,
       spaceBetween: 0,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      navigation: this.slidesLength()
+        ? {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }
+        : undefined,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,

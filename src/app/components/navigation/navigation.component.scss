@@ -6,11 +6,15 @@
 
   &__wrapper {
     display: flex;
+    column-gap: rem(10);
+    padding-right: rem(10);
   }
 
   &__list {
     width: var(--nav-width);
-    padding-right: rem(10);
+    //padding-right: rem(10);
+    //border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: rem(10);
   }
 
   &__item {
@@ -28,12 +32,22 @@
     height: 100%;
     padding: rem(20);
     transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(var(--color-indigo-100-rgba), 0.2);
+    }
     &--active {
       background-color: rgba(var(--color-indigo-100-rgba), 0.2);
     }
   }
 
   &.a-side .navigation__link {
+    position: relative;
+    color: var(--color-dark-900);
+    border-radius: rem(4);
+  }
+
+  &.modal .navigation__link {
     position: relative;
     color: var(--color-dark-900);
     border-radius: rem(4);
@@ -56,7 +70,7 @@
     &-list {
       display: flex;
       flex-direction: column;
-      padding-bottom: rem(10);
+      padding: rem(10) rem(10) 0 rem(10);
 
       &-item {
         display: flex;

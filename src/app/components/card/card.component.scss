@@ -38,6 +38,8 @@
   width: 33.3333%;
   flex-basis: 33.3333%;
   padding: rem(20) rem(20) 0 rem(20);
+  //min-width: 100%;
+
 
   @include tablet {
     width: 50%;

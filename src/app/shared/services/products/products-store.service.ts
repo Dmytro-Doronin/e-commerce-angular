@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core'
 import { ProductsApiService } from './products-api.service'
 import { Subscription } from 'rxjs'
 import { Product } from './products.interface'
+import { Category } from '../categories/categories.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,22 @@ import { Product } from './products.interface'
 export class ProductsStoreService {
   private readonly productsApiService = inject(ProductsApiService)
   private loadSuggestionProductsSubscription: Subscription | null = null
+  private loadProductsSubscription: Subscription | null = null
+  products$ = signal<Product[] | null>(null)
   suggestionProducts$ = signal<Product[] | null>(null)
   suggestionProductsLoading$ = signal<boolean>(false)
+
+  loadProducts(id: Category['id'] | null = null): void {
+    if (this.loadProductsSubscription) {
+      this.loadProductsSubscription.unsubscribe()
+    }
+
+    this.loadProductsSubscription = this.productsApiService.getProducts(id).subscribe(products => {
+      this.products$.set(products)
+
+      this.loadProductsSubscription = null
+    })
+  }
 
   loadSuggestionProducts() {
     if (this.loadSuggestionProductsSubscription) {

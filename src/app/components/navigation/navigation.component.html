@@ -11,7 +11,11 @@
             (focus)="onMouseOver(category)"
             tabindex="0"
           >
-            <a href="#" class="navigation__link">{{category.name}}</a>
+            <a
+              [routerLink]="['/products-list']"
+              [queryParams]="{categoryId: category.id}"
+              class="navigation__link">{{category.name}}
+            </a>
           </li>
         }
       </ul>

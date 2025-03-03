@@ -2,7 +2,12 @@
 
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: var(--color-dark-700);
+  //margin-top: rem(100);
+  z-index: 900;
   &__inner {
     display: flex;
     justify-content: end;
