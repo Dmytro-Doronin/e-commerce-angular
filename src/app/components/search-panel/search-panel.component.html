@@ -1,0 +1,16 @@
+<div class="search-panel">
+  <div class="search-panel__inner">
+    <app-input [type]="'text'" [placeholder]="'Search'" [control]="search"></app-input>
+    @if (showDropdown()) {
+      <div class="search-panel__list">
+        @for (product of searchedProducts(); track product.id) {
+          <app-card [card]="product"></app-card>
+        } @empty {
+          <div class="search-panel__empty">Products not found</div>
+        }
+      </div>
+    }
+  </div>
+
+</div>
+

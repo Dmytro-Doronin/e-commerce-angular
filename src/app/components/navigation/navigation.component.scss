@@ -3,17 +3,14 @@
 
 .navigation {
   height: 100%;
-
   &__wrapper {
     display: flex;
     column-gap: rem(10);
-    padding-right: rem(10);
+    padding: rem(10);
   }
 
   &__list {
     width: var(--nav-width);
-    //padding-right: rem(10);
-    //border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: rem(10);
   }
 
@@ -114,3 +111,6 @@
   }
 }
 
+.modal {
+  background-color: var(--color-light-100);
+}

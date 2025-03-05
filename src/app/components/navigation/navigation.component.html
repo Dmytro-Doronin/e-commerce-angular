@@ -14,7 +14,9 @@
             <a
               [routerLink]="['/products-list']"
               [queryParams]="{categoryId: category.id}"
-              class="navigation__link">{{category.name}}
+              class="navigation__link"
+              (click)="onModalClose()"
+            >{{category.name}}
             </a>
           </li>
         }

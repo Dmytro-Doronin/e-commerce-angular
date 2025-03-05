@@ -1,153 +1,66 @@
 @use '../../styles/helpers' as *;
 
-//:host {
-//  width: 33.333333333333336%;
-//  flex-basis: 33.333333333333336%;
-//  padding: rem(20) rem(20) 0 rem(20);
-//
-//  @include tablet {
-//    width: 50%;
-//    flex-basis: 50%;
-//  }
-//
-//  //&:nth-child(3n-1),
-//  //&:nth-child(3n-2),
-//  //&:nth-child(3n-3) {
-//  //  padding-right: 0;
-//  //  padding-left: 0;
-//  //}
-//
-//
-//
-//  &:nth-child(3n-1) {
-//    padding-right: 0;
-//    padding-left: 0;
-//
-//  }
-//  &:nth-child(3n-2) {
-//    padding-left: 0;
-//  }
-//
-//  &:nth-child(3n-3) {
-//    padding-right: 0;
-//    padding-left: rem(20);
-//  }
-//}
-
-:host {
-  width: 33.3333%;
-  flex-basis: 33.3333%;
-  padding: rem(20) rem(20) 0 rem(20);
-  //min-width: 100%;
-
-
-  @include tablet {
-    width: 50%;
-    flex-basis: 50%;
-
-    // Полностью сбрасываем `nth-child(3n-*)` на планшетах
-    &:nth-child(3n-1),
-    &:nth-child(3n-2),
-    &:nth-child(3n-3) {
-      padding-right: rem(20);
-      padding-left: rem(20);
-    }
-  }
-
-  // Оставляем `nth-child` стили для 3 колонок (desktop)
-  @include tablet-above {
-    &:nth-child(3n-1) {
-      padding-right: 0;
-      padding-left: 0;
-    }
-
-    &:nth-child(3n-2) {
-      padding-left: 0;
-    }
-
-    &:nth-child(3n-3) {
-      padding-right: 0;
-      padding-left: rem(20);
-    }
-  }
-
-  @include mobile {
-    width: rem(350);
-    flex-basis: rem(350);
-    padding: 0;
-    padding-bottom: rem(10);
-  }
-  @include mobile-s {
-    width: rem(300);
-    flex-basis: rem(300);
-  }
-}
-
 .card {
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  background-color: var(--color-light-100);
+  box-shadow: 0 rem(13) rem(19) rgba(0, 0, 0, 0.07);
+  padding: rem(10) rem(30) rem(35) rem(30);
+  min-height: rem(610);
   &__inner {
     display: flex;
     height: auto;
     flex-direction: column;
-    padding: rem(10) rem(30) rem(35) rem(30);
-    box-shadow: 0 rem(13) rem(19) rgba(0, 0, 0, 0.07);
-    background-color: var(--color-light-100);
+
   }
 
-  &__info {
-    padding: rem(20) 0;
-  }
+    &__info {
+      padding: rem(20) 0;
+    }
 
-  &__description {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.5em;
-    max-height: calc(1.5em * 4);
-  }
+    &__description {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.5em;
+      max-height: calc(1.5em * 4);
+    }
 
-  &__img {
-    width: 100%;
-    height: 100%;
-  }
+    &__img {
+      width: 100%;
+      height: 100%;
+    }
 
-  &__title {
-    @include hover-transition;
-    display: inline-block;
-    margin-bottom: rem(10);
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-wrap: wrap;
-    line-height: 1.5em;
+    &__title {
+      @include hover-transition;
+      display: inline-block;
+      margin-bottom: rem(10);
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-wrap: wrap;
+      line-height: 1.5em;
 
-    &:hover {
-      color: var(--color-indigo-500);
+      &:hover {
+        color: var(--color-indigo-500);
+      }
+    }
+
+    &__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: rem(30);
+    }
+
+    &__price {
+      font-weight: var(--font-weight-bold);
     }
   }
-
-  &__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: rem(30);
-  }
-
-  &__price {
-    font-weight: var(--font-weight-bold);
-  }
-}
-
-.svg {
-  width: 24px;
-  height: 24px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
-}
-
 
 

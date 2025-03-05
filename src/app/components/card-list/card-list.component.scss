@@ -1,22 +1,30 @@
 @use '../../styles/helpers' as *;
 
-
-:host {
-  width: 100%;
-
-}
-
 .card-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  min-height: rem(400);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(rem(400), 1fr));
+  gap: rem(20);
   padding-top: rem(20);
-
-  @include tablet {
+  min-height: rem(400);
+  background-color: var(--color-light-100);
+  &__message {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    width: 100%;
+    height: rem(400);
+
+    font-size: rem(20);
+    font-weight: 700;
   }
 
+  //@include tablet {
+  //  grid-template-columns: repeat(2, 1fr);
+  //}
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));;
+  }
 }
 
 svg {

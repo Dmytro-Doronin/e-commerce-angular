@@ -27,6 +27,12 @@
     }
   }
 
+  &__elements {
+    display: flex;
+    align-items: center;
+    gap: rem(20);
+  }
+
   &__logo {
     @include mobile {
       display: none;

@@ -5,7 +5,6 @@
       @for (slide of slides(); track slide; let index = $index) {
         <div class="swiper-slide">
           <div class="swiper__main-wrapper">
-<!--            [ngStyle]="{ 'background-image': 'url(' + slide + ')' }"-->
             <div class="swiper__main-content">
                 <span class="swiper__main-title">FIND SOMETHING FOR YOURSELF</span>
               @if (links().length) {
@@ -16,12 +15,16 @@
           </div>
 
         </div>
+      } @empty {
+        <app-loader></app-loader>
       }
     } @else {
       @for (slide of slides(); track slide) {
         <div class="swiper-slide">
-          <img [src]="slide" alt="Slide">
+          <img [src]="slide" (error)="onImageError($event)"  alt="Slide">
         </div>
+      } @empty {
+        <img src="../../assets/images/empty.jpg" alt="Slide">
       }
     }
 

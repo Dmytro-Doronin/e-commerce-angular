@@ -13,11 +13,14 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { NgStyle } from '@angular/common'
 import { ButtonComponent } from '../ui/button/button.component'
 import { RouterLink } from '@angular/router'
+import { LoaderComponent } from '../loader/loader.component'
+import { ValidateSliderImagePipe } from '../../shared/pipes/validate-slider-image/validate-slider-image.pipe'
+import { emptyImage } from '../../shared/products.mock'
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [NgStyle, ButtonComponent, RouterLink],
+  imports: [NgStyle, ButtonComponent, RouterLink, LoaderComponent, ValidateSliderImagePipe],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,6 +42,10 @@ export class CarouselComponent {
     effect(() => {
       this.initSwiper()
     })
+  }
+
+  onImageError(event: Event) {
+    ;(event.target as HTMLImageElement).src = emptyImage
   }
 
   private initSwiper() {

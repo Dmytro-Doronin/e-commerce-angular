@@ -2,10 +2,10 @@
   @if (products(); as products) {
       @for (product of products; track product.id) {
         <app-card [card]="product"></app-card>
+      } @empty {
+        <span class="card-list__message">Card list is empty</span>
       }
-  } @else if (loading()) {
-    <app-loader></app-loader>
   } @else {
-    <span>Card list is empty</span>
+  <app-loader></app-loader>
   }
 </div>

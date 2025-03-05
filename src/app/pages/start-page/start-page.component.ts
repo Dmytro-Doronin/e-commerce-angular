@@ -27,8 +27,7 @@ export class StartPageComponent {
   productsStoreService = inject(ProductsStoreService)
   categoriesStoreService = inject(CategoriesStoreService)
 
-  readonly suggestedProducts = this.productsStoreService.suggestionProducts$
-  readonly suggestedProductsLoading = this.productsStoreService.suggestionProductsLoading$
+  readonly suggestedProducts = this.productsStoreService.suggestionProducts
   readonly popularCategories = this.categoriesStoreService.popularCategories$
   readonly popularCategoriesLoading = this.categoriesStoreService.isLoadingPopularCategories$
 

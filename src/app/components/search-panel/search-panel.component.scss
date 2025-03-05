@@ -1,0 +1,38 @@
+@use '../../styles/helpers' as *;
+
+
+.search-panel {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //row-gap: rem(20);
+
+  &__inner {
+    width: 70%;
+    position: relative;
+  }
+  &__list {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    max-height: rem(500);
+    min-height: rem(100);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: rem(5);
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-light-100);
+    min-height: rem(700);
+  }
+}

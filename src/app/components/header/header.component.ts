@@ -11,11 +11,12 @@ import { NavigationComponent } from '../navigation/navigation.component'
 import { ButtonComponent } from '../ui/button/button.component'
 import { ModalService } from '../../shared/services/modal/modal.service'
 import { Category } from '../../shared/services/categories/categories.interface'
+import { SearchPanelComponent } from '../search-panel/search-panel.component'
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [LogoComponent, NavigationComponent, ButtonComponent],
+  imports: [LogoComponent, NavigationComponent, ButtonComponent, SearchPanelComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,6 +38,10 @@ export class HeaderComponent {
         context: { $implicit: this.categories() },
       })
     }
+  }
+
+  closeModal() {
+    this.modalService.closeModal()
   }
 
   onMenuClicked() {

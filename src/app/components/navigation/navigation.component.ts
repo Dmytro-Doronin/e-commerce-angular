@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from '@angular/core'
 import { NgClass } from '@angular/common'
 import { Category } from '../../shared/services/categories/categories.interface'
 import { RouterLink } from '@angular/router'
+import { ModalService } from '../../shared/services/modal/modal.service'
 
 @Component({
   selector: 'app-navigation',
@@ -12,6 +21,7 @@ import { RouterLink } from '@angular/router'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
+  private readonly modalService = inject(ModalService)
   categories = input<Category[] | null>(null)
   extended = input<boolean>(false)
   variant = input<'a-side' | 'burger' | 'modal'>('a-side')
@@ -37,5 +47,9 @@ export class NavigationComponent {
     if (this.variant() !== 'a-side') {
       this.activeCategory.set(category)
     }
+  }
+
+  onModalClose() {
+    this.modalService.closeModal()
   }
 }

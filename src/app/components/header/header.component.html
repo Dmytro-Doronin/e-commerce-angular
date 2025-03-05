@@ -28,8 +28,27 @@
       </app-button>
     </div>
 
+    <div class="header__elements">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="20"
+           height="20"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="2"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           class="link"
+           (click)="openModal(searchPanel)"
+      >
+        <circle cx="11" cy="11" r="8">
+        </circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65">
+        </line>
+      </svg>
+      <a href="#" class="link">login</a>
+    </div>
 
-    <a href="#" class="link">login</a>
   </div>
 
   <div class="header__menu active" [class.active]="isOpen()">
@@ -38,5 +57,13 @@
 </div>
 
 <ng-template #menuModalTemplate let-categories>
-  <app-navigation [categories]="categories" [variant]="'modal'" [extended]="true"></app-navigation>
+  <app-navigation
+    [categories]="categories"
+    [variant]="'modal'"
+    [extended]="true">
+  </app-navigation>
+</ng-template>
+
+<ng-template #searchPanel>
+  <app-search-panel></app-search-panel>
 </ng-template>

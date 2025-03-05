@@ -24,7 +24,7 @@ export class ProductsListComponent {
   id = toSignal(this.route.queryParams.pipe(map(params => params['categoryId'] || null)))
 
   categories = this.categoriesStoreService.allCategories$
-  products = this.productsStoreService.products$
+  products = this.productsStoreService.products
 
   constructor() {
     this.listenQueryParams()
@@ -33,7 +33,6 @@ export class ProductsListComponent {
   listenQueryParams() {
     effect(() => {
       const currentId = this.id()
-      console.log('currentId ', currentId)
       this.productsStoreService.loadProducts(currentId)
     })
   }

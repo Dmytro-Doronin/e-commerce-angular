@@ -12,6 +12,5 @@ import { LoaderComponent } from '../loader/loader.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardListComponent {
-  products = input<Product[] | null>(null)
-  loading = input<boolean>(false)
+  products = input<Product[] | null>([])
 }
