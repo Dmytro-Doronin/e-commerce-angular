@@ -17,7 +17,7 @@ export class AppComponent {
   isMenuOpen = signal<boolean>(false)
   // categories: Category[] = categoriesMock
   private readonly categoriesService = inject(CategoriesStoreService)
-  readonly categories = this.categoriesService.allCategories$
+  readonly categories = this.categoriesService.allCategories
 
   constructor() {
     this.categoriesService.loadAllCategories()

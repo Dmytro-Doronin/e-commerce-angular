@@ -28,8 +28,8 @@ export class StartPageComponent {
   categoriesStoreService = inject(CategoriesStoreService)
 
   readonly suggestedProducts = this.productsStoreService.suggestionProducts
-  readonly popularCategories = this.categoriesStoreService.popularCategories$
-  readonly popularCategoriesLoading = this.categoriesStoreService.isLoadingPopularCategories$
+  readonly popularCategories = this.categoriesStoreService.popularCategories
+  readonly popularCategoriesLoading = this.categoriesStoreService.isLoadingPopularCategories
 
   constructor() {
     this.productsStoreService.loadSuggestionProducts()

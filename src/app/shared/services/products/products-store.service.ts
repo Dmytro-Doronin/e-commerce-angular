@@ -64,4 +64,8 @@ export class ProductsStoreService {
       },
     })
   }
+
+  deleteSearchedProducts() {
+    this.searchedProducts.set(null)
+  }
 }

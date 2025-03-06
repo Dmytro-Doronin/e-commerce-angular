@@ -6,7 +6,7 @@
   gap: rem(20);
   padding-top: rem(20);
   min-height: rem(400);
-  background-color: var(--color-light-100);
+  //background-color: var(--color-light-100);
   &__message {
     display: flex;
     align-items: center;
@@ -17,10 +17,6 @@
     font-size: rem(20);
     font-weight: 700;
   }
-
-  //@include tablet {
-  //  grid-template-columns: repeat(2, 1fr);
-  //}
 
   @include mobile {
     grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));;
