@@ -13,4 +13,5 @@ import { LoaderComponent } from '../loader/loader.component'
 })
 export class CardListComponent {
   products = input<Product[] | null>([])
+  loading = input<boolean>(false)
 }

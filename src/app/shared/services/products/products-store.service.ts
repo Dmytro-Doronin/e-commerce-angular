@@ -1,8 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core'
 import { ProductsApiService } from './products-api.service'
 import { debounceTime, distinctUntilChanged, Subscription, switchMap } from 'rxjs'
-import { Product } from './products.interface'
-import { Category } from '../categories/categories.interface'
+import { LoadProductsInterface, Product } from './products.interface'
 import { FormControl } from '@angular/forms'
 
 @Injectable({
@@ -14,6 +13,7 @@ export class ProductsStoreService {
   private loadProductsSubscription: Subscription | null = null
   private searchProductsSubscription: Subscription | null = null
   products = signal<Product[] | null>(null)
+  productsLoading = signal<boolean>(false)
   searchedProducts = signal<Product[] | null>(null)
   suggestionProducts = signal<Product[] | null>(null)
 
@@ -33,21 +33,26 @@ export class ProductsStoreService {
         },
       })
   }
-
-  loadProducts(id: Category['id'] | null = null): void {
+  loadProducts({ id, title, price_min, price_max }: LoadProductsInterface = {}): void {
     if (this.loadProductsSubscription) {
       this.loadProductsSubscription.unsubscribe()
     }
-
-    this.loadProductsSubscription = this.productsApiService.getProducts(id).subscribe({
-      next: products => {
-        this.products.set(products)
-        this.loadProductsSubscription = null
-      },
-      error: error => {
-        console.log(error)
-      },
-    })
+    this.productsLoading.set(true)
+    this.loadProductsSubscription = this.productsApiService
+      .getProducts(id, title, price_min, price_max)
+      .subscribe({
+        next: products => {
+          this.products.set(products)
+          this.productsLoading.set(false)
+          this.loadProductsSubscription = null
+        },
+        error: error => {
+          console.log(error)
+        },
+        complete: () => {
+          this.productsLoading.set(false)
+        },
+      })
   }
 
   loadSuggestionProducts() {

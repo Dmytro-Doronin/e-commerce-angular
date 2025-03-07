@@ -7,16 +7,6 @@
   padding-top: rem(20);
   min-height: rem(400);
   //background-color: var(--color-light-100);
-  &__message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: rem(400);
-
-    font-size: rem(20);
-    font-weight: 700;
-  }
 
   @include mobile {
     grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));;

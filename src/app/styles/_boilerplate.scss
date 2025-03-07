@@ -74,3 +74,13 @@ body {
   justify-content: center;
 }
 
+.empty-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: rem(400);
+
+  font-size: rem(20);
+  font-weight: 700;
+}

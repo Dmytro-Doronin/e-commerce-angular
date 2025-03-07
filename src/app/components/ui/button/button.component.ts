@@ -10,5 +10,5 @@ import { NgClass } from '@angular/common'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  variant = input<'primary' | 'secondary'>('primary')
+  variant = input<'primary' | 'secondary' | 'navigation'>('primary')
 }

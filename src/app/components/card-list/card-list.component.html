@@ -1,11 +1,40 @@
-<div class="card-list">
-  @if (products(); as products) {
-      @for (product of products; track product.id) {
-        <app-card [card]="product"></app-card>
-      } @empty {
-        <span class="card-list__message">Card list is empty</span>
+
+
+  @if (loading()) {
+    <div class="empty-block">
+
+        <app-loader></app-loader>
+
+
+    </div>
+
+  } @else if ((products() ?? []).length > 0) {
+    <div class="card-list">
+      @for (product of products(); track product.id) {
+          <app-card [card]="product"></app-card>
       }
+    </div>
   } @else {
-  <app-loader></app-loader>
+    <span class="empty-block">Card list is empty</span>
   }
-</div>
+<!--    @if (products(); as products) {-->
+<!--        @for (product of products; track product.id) {-->
+<!--          <app-card [card]="product"></app-card>-->
+<!--        } @empty {-->
+<!--          <span class="card-list__message">Card list is empty</span>-->
+<!--        }-->
+<!--    } @else if (loading()) {-->
+<!--      <app-loader></app-loader>-->
+<!--    }-->
+
+
+<!--  @if (products(); as products) {-->
+<!--      @for (product of products; track product.id) {-->
+<!--        <app-card [card]="product"></app-card>-->
+<!--      } @empty {-->
+<!--        <span class="card-list__message">Card list is empty</span>-->
+<!--      }-->
+<!--  } @else {-->
+<!--    <app-loader></app-loader>-->
+<!--  }-->
+

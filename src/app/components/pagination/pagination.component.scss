@@ -1,0 +1,10 @@
+@use '../../styles/helpers' as *;
+
+.pagination {
+
+  &__content {
+    display: flex;
+    align-items: center;
+    column-gap: rem(10);
+  }
+}
