@@ -16,6 +16,7 @@ export class ProductsStoreService {
   productsLoading = signal<boolean>(false)
   searchedProducts = signal<Product[] | null>(null)
   suggestionProducts = signal<Product[] | null>(null)
+  suggestionProductsLoading = signal<boolean>(false)
 
   setupSearch(formControl: FormControl) {
     formControl.valueChanges
@@ -59,13 +60,20 @@ export class ProductsStoreService {
     if (this.loadSuggestionProductsSubscription) {
       this.loadSuggestionProductsSubscription.unsubscribe()
     }
+
+    this.suggestionProductsLoading.set(true)
+
     this.loadSuggestionProductsSubscription = this.productsApiService.getProducts().subscribe({
       next: products => {
-        this.suggestionProducts.set(products.slice(0, 6))
+        this.suggestionProducts.set(products.slice(0, 8))
         this.loadSuggestionProductsSubscription = null
+        this.suggestionProductsLoading.set(false)
       },
       error: error => {
         console.log(error)
+      },
+      complete: () => {
+        this.suggestionProductsLoading.set(false)
       },
     })
   }

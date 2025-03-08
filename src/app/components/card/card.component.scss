@@ -2,31 +2,53 @@
 
 .card {
   display: flex;
-  max-width: 100%;
+  max-width: rem(300);
   flex-direction: column;
   background-color: var(--color-light-100);
   box-shadow: 0 rem(13) rem(19) rgba(0, 0, 0, 0.07);
-  padding: rem(10) rem(30) rem(35) rem(30);
-  min-height: rem(610);
+  padding: rem(10) rem(25) rem(25) rem(25);
+
+  &--horizontal {
+    max-width: 100%;
+    border-bottom: rem(1) solid rgba(0,0,0, 0.1);
+  }
+
+  &__carousel {
+    &--horizontal {
+      max-width: rem(200);
+    }
+  }
+
+  &__content-group {
+    &--horizontal {
+      width: 100%;
+    }
+  }
+
   &__inner {
     display: flex;
     height: auto;
     flex-direction: column;
 
+    &--horizontal {
+      align-items: center;
+      flex-direction: row;
+      column-gap: rem(20);
+    }
   }
 
     &__info {
-      padding: rem(20) 0;
+      padding: rem(10) 0;
     }
 
     &__description {
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 1 ;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.5em;
-      max-height: calc(1.5em * 4);
+      max-height: calc(1.5em * 3);
     }
 
     &__img {
@@ -55,7 +77,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: rem(30);
+      padding-top: rem(20);
     }
 
     &__price {

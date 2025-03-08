@@ -9,13 +9,19 @@
       >
         <div class="popular-categories__info">
           <span class="popular-categories__title">{{category.name}}</span>
-          <a class="popular-categories__link" href="#">More details</a>
+          <a class="popular-categories__link"
+             [routerLink]="['/products-list']"
+             [queryParams]="{categoryId: category.id}">
+          More details
+          </a>
         </div>
       </div>
     }
   </div>
 } @else if (isLoading()) {
-  <app-loader></app-loader>
+  <div class="empty-block">
+    <app-loader></app-loader>
+  </div>
 } @else {
   <span>Popular categories list is empty</span>
 }

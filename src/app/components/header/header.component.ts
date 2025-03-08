@@ -12,11 +12,12 @@ import { ButtonComponent } from '../ui/button/button.component'
 import { ModalService } from '../../shared/services/modal/modal.service'
 import { Category } from '../../shared/services/categories/categories.interface'
 import { SearchPanelComponent } from '../search-panel/search-panel.component'
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [LogoComponent, NavigationComponent, ButtonComponent, SearchPanelComponent],
+  imports: [LogoComponent, NavigationComponent, ButtonComponent, SearchPanelComponent, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

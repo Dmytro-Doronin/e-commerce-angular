@@ -90,27 +90,6 @@ export class ProductsListComponent {
     )
   }
 
-  // listenQueryParams() {
-  //   effect(() => {
-  //     const currentId = this.id()
-  //     const price_min = this.fromSignal()
-  //     const price_max = this.toSignal()
-  //     if (currentId !== 'All') {
-  //       this.productsStoreService.loadProducts({
-  //           id: currentId,
-  //           price_max: price_max,
-  //           price_min: price_min
-  //       })
-  //       this.categoriesStoreService.loadCategoryById(currentId)
-  //     } else {
-  //       this.productsStoreService.loadProducts({
-  //         price_max: price_max,
-  //         price_min: price_min
-  //       })
-  //     }
-  //   }, {allowSignalWrites: true})
-  // }
-
   setFiltersActive() {
     this.filtersActive.set(!this.filtersActive())
   }

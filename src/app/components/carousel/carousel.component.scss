@@ -8,7 +8,7 @@
   width: 100%;
   height: rem(300);
   border-radius: rem(10);
-
+  overflow: hidden;
 
   &__main-wrapper {
     display: flex;
@@ -47,7 +47,8 @@
 .swiper-slide img {
   width: 100%;
   height: 100%;
-  //object-fit: cover;
+  object-fit: contain;
+
 }
 
 .swiper-button-prev,
@@ -73,7 +74,6 @@
   position: absolute;
   bottom: rem(30);
   left: 50%;
-  //transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,10 +83,11 @@
   z-index: 10;
 }
 
+
 .swiper-bullet {
   width: rem(10) ;
   height: rem(10);
-  background-color: var(--color-light-100);
+  background-color: var(--color-dark-700);
   border-radius: 50%;
   opacity: 0.5;
   transition: opacity 0.3s ease, background-color 0.3s ease;

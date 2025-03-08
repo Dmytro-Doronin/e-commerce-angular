@@ -8,32 +8,32 @@
             <div class="swiper__main-content">
                 <span class="swiper__main-title">FIND SOMETHING FOR YOURSELF</span>
               @if (links().length) {
-                <app-button [routerLink]="['/', 'category', links()[index]]">See more</app-button>
+                <app-button
+                  [routerLink]="['/products-list']"
+                  [queryParams]="{categoryId: links()[index]}"
+                >See more
+                </app-button>
               }
             </div>
             <img [src]="slide" alt="Slide" class="swiper__main-image">
           </div>
-
         </div>
       } @empty {
-        <app-loader></app-loader>
+        <div class="empty-block">
+          <app-loader></app-loader>
+        </div>
       }
     } @else {
       @for (slide of slides(); track slide) {
         <div class="swiper-slide">
-          <img [src]="slide" (error)="onImageError($event)"  alt="Slide">
+          <img [src]="slide | validateSliderImage" (error)="onImageError($event)"  alt="Slide">
         </div>
-      } @empty {
-        <img src="../../assets/images/empty.jpg" alt="Slide">
       }
     }
-
-
   </div>
     @if (slidesLength()) {
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     }
-
     <div class="swiper-pagination"></div>
 </div>

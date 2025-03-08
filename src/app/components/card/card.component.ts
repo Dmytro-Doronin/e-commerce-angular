@@ -15,7 +15,7 @@ import { ConvertPipe } from '../../shared/pipes/convert-pipe/convert.pipe'
 })
 export class CardComponent {
   card = input<Product>()
-  variant = input<'horizontal'>('horizontal')
+  variant = input<'horizontal' | 'vertical'>('vertical')
   inCard = signal<boolean>(false)
 
   onAddToCard() {

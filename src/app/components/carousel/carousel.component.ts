@@ -30,6 +30,7 @@ export class CarouselComponent {
   mainVariant = input<boolean>(false)
   slides = input<string[]>([])
   links = input<string[]>([])
+  loading = input<boolean>(false)
   delay = input<number>()
   private swiperInstance: Swiper | null = null
 

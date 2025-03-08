@@ -1,17 +1,30 @@
 <div class="container">
-  <app-carousel
-    [delay]="undefined"
-    [slides]="popularCategories() | filtersForSlider: 'image'"
-    [links]="popularCategories() | filtersForSlider: 'id'"
-    [mainVariant]="true"
-  ></app-carousel>
+    <app-carousel
+      [delay]="undefined"
+      [slides]="popularCategories() | filtersForSlider: 'image'"
+      [links]="popularCategories() | filtersForSlider: 'id'"
+      [mainVariant]="true"
+      [loading]="popularCategoriesLoading()"
+    ></app-carousel>
 </div>
-<app-section [title]="'Suggestion for you'">
+<app-section
+  [title]="'Suggestion for you'"
+>
   <app-card-list
     section-body
     [products]="suggestedProducts()"
+    [loading]="suggestedProductsLoading()"
   ></app-card-list>
-  <app-button section-button [variant]="'primary'">View all products</app-button>
+
+    <app-button
+      section-button
+      [variant]="'primary'">
+      <a
+        [routerLink]="['/products-list']"
+        [queryParams]="{categoryId: 'All'}">
+        <span>View all products</span>
+      </a>
+    </app-button>
 </app-section>
 
 

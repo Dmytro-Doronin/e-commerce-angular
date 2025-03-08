@@ -5,12 +5,14 @@
       <div class="search-panel__list">
         @if (searchedProducts(); as products) {
           @for (product of products; track product.id) {
-            <app-card [card]="product"></app-card>
+            <app-card [variant]="'horizontal'" [card]="product"></app-card>
           } @empty {
             <div class="search-panel__empty">Products not found</div>
           }
         } @else {
-          <app-loader></app-loader>
+          <div class="empty-block">
+            <app-loader></app-loader>
+          </div>
         }
       </div>
     }

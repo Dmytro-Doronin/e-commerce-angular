@@ -15,9 +15,9 @@
     </button>
 
     <div class="header__control-main">
-      <div class="header__logo">
+      <a class="header__logo" [routerLink]="['/']">
         <app-logo></app-logo>
-      </div>
+      </a>
 
       <app-button [variant]="'secondary'" (click)="openModal(menuModalTemplate)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="b2121-b0">
