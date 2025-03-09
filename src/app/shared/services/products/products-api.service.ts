@@ -16,7 +16,9 @@ export class ProductsApiService {
     categoryId?: Category['id'] | null,
     title?: string | null,
     price_min?: string | null,
-    price_max?: string | null
+    price_max?: string | null,
+    offset?: string | null,
+    limit?: string | null
   ): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${this.baseUrl}/products`, {
       params: getParamsFromObject({
@@ -24,6 +26,8 @@ export class ProductsApiService {
         title: title,
         price_min: price_min,
         price_max: price_max,
+        offset: offset,
+        limit: limit,
       }),
     })
   }

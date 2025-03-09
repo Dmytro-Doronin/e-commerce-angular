@@ -11,8 +11,10 @@ export class ProductsStoreService {
   private readonly productsApiService = inject(ProductsApiService)
   private loadSuggestionProductsSubscription: Subscription | null = null
   private loadProductsSubscription: Subscription | null = null
+  private loadProductsCountSubscription: Subscription | null = null
   private searchProductsSubscription: Subscription | null = null
   products = signal<Product[] | null>(null)
+  productsCount = signal<number>(0)
   productsLoading = signal<boolean>(false)
   searchedProducts = signal<Product[] | null>(null)
   suggestionProducts = signal<Product[] | null>(null)
@@ -34,13 +36,20 @@ export class ProductsStoreService {
         },
       })
   }
-  loadProducts({ id, title, price_min, price_max }: LoadProductsInterface = {}): void {
+  loadProducts({
+    id,
+    title,
+    price_min,
+    price_max,
+    offset,
+    limit,
+  }: LoadProductsInterface = {}): void {
     if (this.loadProductsSubscription) {
       this.loadProductsSubscription.unsubscribe()
     }
     this.productsLoading.set(true)
     this.loadProductsSubscription = this.productsApiService
-      .getProducts(id, title, price_min, price_max)
+      .getProducts(id, title, price_min, price_max, offset, limit)
       .subscribe({
         next: products => {
           this.products.set(products)
@@ -52,6 +61,23 @@ export class ProductsStoreService {
         },
         complete: () => {
           this.productsLoading.set(false)
+        },
+      })
+  }
+
+  loadProductsCount({ id, title, price_min, price_max }: LoadProductsInterface = {}): void {
+    if (this.loadProductsCountSubscription) {
+      this.loadProductsCountSubscription.unsubscribe()
+    }
+    this.loadProductsCountSubscription = this.productsApiService
+      .getProducts(id, title, price_min, price_max)
+      .subscribe({
+        next: products => {
+          this.productsCount.set(products.length)
+          this.loadProductsCountSubscription = null
+        },
+        error: error => {
+          console.log(error)
         },
       })
   }

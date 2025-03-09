@@ -11,4 +11,5 @@ import { NgClass } from '@angular/common'
 })
 export class ButtonComponent {
   variant = input<'primary' | 'secondary' | 'navigation'>('primary')
+  active = input<boolean>(false)
 }

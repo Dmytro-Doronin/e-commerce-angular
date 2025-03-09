@@ -36,6 +36,10 @@
   border: rem(1) solid rgba(0,0,0, 0.1);
   padding: rem(8) rem(14);
   color: var(--color-dark-900);
+
+  &--active {
+    background: var(--color-indigo-500);
+  }
   &:hover {
     background: var(--color-indigo-100);
   }

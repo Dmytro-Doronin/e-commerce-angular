@@ -40,6 +40,13 @@ export class ProductsListComponent {
   currentCategory = this.categoriesStoreService.category
   currentCategoryName = computed(() => (this.id() === 'All' ? 'All' : this.currentCategory()?.name))
   filtersActive = signal<boolean>(false)
+  countOfProducts = this.productsStoreService.productsCount
+
+  readonly appPaginationChunkSize = signal<number>(6)
+  readonly offset = computed(() => String(this.appPaginationChunkSize() * (this.activePage() - 1)))
+
+  activePage = signal<number>(1)
+  previousCategoryId: string | null = null
 
   filterForm = new FormGroup({
     from: new FormControl('1'),
@@ -65,13 +72,24 @@ export class ProductsListComponent {
         const price_min = this.fromSignal()
         const price_max = this.toSignal()
 
-        const params: LoadProductsInterface = { price_min, price_max }
-
-        if (currentId !== 'All') {
-          params['id'] = currentId
+        if (currentId !== this.previousCategoryId) {
+          this.activePage.set(1)
+          this.previousCategoryId = currentId
         }
 
-        this.productsStoreService.loadProducts(params)
+        const offset = this.offset()
+        const limit = String(this.appPaginationChunkSize())
+
+        const mainParams: LoadProductsInterface = { price_min, price_max, offset, limit }
+        const countParams: LoadProductsInterface = { price_min, price_max }
+
+        if (currentId !== 'All') {
+          mainParams['id'] = currentId
+          countParams['id'] = currentId
+        }
+
+        this.productsStoreService.loadProductsCount(countParams)
+        this.productsStoreService.loadProducts(mainParams)
       },
       { allowSignalWrites: true }
     )

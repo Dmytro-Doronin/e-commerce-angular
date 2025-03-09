@@ -18,4 +18,6 @@ export interface LoadProductsInterface {
   title?: string | null
   price_min?: string | null
   price_max?: string | null
+  offset?: string | null
+  limit?: string | null
 }

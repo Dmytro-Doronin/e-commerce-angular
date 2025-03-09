@@ -16,6 +16,8 @@
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
     padding-top: rem(30);
   }
 
@@ -36,5 +38,13 @@
     align-items: center;
     column-gap: rem(20);
     padding-top: rem(20);
+  }
+
+  &__pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(20);
   }
 }
