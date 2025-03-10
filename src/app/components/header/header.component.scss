@@ -31,6 +31,28 @@
     display: flex;
     align-items: center;
     gap: rem(20);
+
+  }
+
+  &__basket {
+    position: relative;
+    &-round {
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      border-radius: 50%;
+      background-color: var(--color-danger-500);
+      min-width: rem(17);
+      min-height: rem(17);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &-number {
+        font-size: rem(12);
+        color: var(--color-light-100);
+      }
+    }
   }
 
   &__logo {

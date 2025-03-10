@@ -9,7 +9,7 @@
           <div class="empty-block">
             <app-loader></app-loader>
           </div>
-        } @else {
+        } @else if ((products() ?? []).length > 0) {
           <div class="product-list__products">
 
             <div class="product-list__header">
@@ -48,6 +48,8 @@
               }
             </div>
           </div>
+        } @else {
+          <div class="empty-block">List is empty</div>
         }
       </div>
     </div>

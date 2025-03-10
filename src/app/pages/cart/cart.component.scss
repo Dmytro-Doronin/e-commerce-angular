@@ -1,0 +1,8 @@
+@use '../../styles/helpers' as *;
+
+
+.cart {
+  &__inner {
+    padding-top: rem(30);
+  }
+}

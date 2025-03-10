@@ -9,6 +9,10 @@
     padding: rem(10);
   }
 
+  &.a-side {
+    position: fixed;
+  }
+
   &__list {
     width: var(--nav-width);
     border-radius: rem(10);

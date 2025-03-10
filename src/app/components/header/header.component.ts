@@ -13,6 +13,7 @@ import { ModalService } from '../../shared/services/modal/modal.service'
 import { Category } from '../../shared/services/categories/categories.interface'
 import { SearchPanelComponent } from '../search-panel/search-panel.component'
 import { RouterLink } from '@angular/router'
+import { CartService } from '../../shared/services/cart/cart.service'
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,9 @@ import { RouterLink } from '@angular/router'
 })
 export class HeaderComponent {
   private readonly modalService = inject(ModalService)
+  private readonly cartService = inject(CartService)
 
+  cartCount = this.cartService.cartCount
   categories = input<Category[] | null>(null)
   isOpen = input<boolean>(true)
   isOpenChange = output<boolean>()

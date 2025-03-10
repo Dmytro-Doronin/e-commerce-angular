@@ -11,12 +11,18 @@
 
   <div class="pagination__pages">
     @for (pageIndex of pageIndexes(); track pageIndex) {
-      <app-button
-        [variant]="'navigation'"
-        (click)="setIndex(pageIndex)"
-        [active]="pageIndex === activeIndex()"
-      >
-        {{pageIndex}}</app-button>
+      @if (pageIndex !== '...') {
+        <app-button
+          [variant]="'navigation'"
+          (click)="setIndex(pageIndex)"
+          [active]="pageIndex === activeIndex()"
+        >
+          {{pageIndex}}
+        </app-button>
+      } @else {
+        <div class="pagination__pages-dots">...</div>
+      }
+
     }
   </div>
 

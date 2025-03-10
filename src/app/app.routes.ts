@@ -8,4 +8,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/products-list/products-list.component').then(m => m.ProductsListComponent),
   },
+  {
+    path: 'cart',
+    loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent),
+  },
 ]
