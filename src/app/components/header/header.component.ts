@@ -14,11 +14,19 @@ import { Category } from '../../shared/services/categories/categories.interface'
 import { SearchPanelComponent } from '../search-panel/search-panel.component'
 import { RouterLink } from '@angular/router'
 import { CartService } from '../../shared/services/cart/cart.service'
+import { IconComponent } from '../icon/icon.component'
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [LogoComponent, NavigationComponent, ButtonComponent, SearchPanelComponent, RouterLink],
+  imports: [
+    LogoComponent,
+    NavigationComponent,
+    ButtonComponent,
+    SearchPanelComponent,
+    RouterLink,
+    IconComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,11 +8,12 @@ import { ConvertPipe } from '../../shared/pipes/convert-pipe/convert.pipe'
 import { ButtonComponent } from '../../components/ui/button/button.component'
 import { CartService } from '../../shared/services/cart/cart.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
+import { IconComponent } from '../../components/icon/icon.component'
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgTemplateOutlet, ConvertPipe, ButtonComponent, LoaderComponent],
+  imports: [NgTemplateOutlet, ConvertPipe, ButtonComponent, LoaderComponent, IconComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
