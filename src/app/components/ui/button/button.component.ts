@@ -10,6 +10,6 @@ import { NgClass } from '@angular/common'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  variant = input<'primary' | 'secondary' | 'navigation'>('primary')
+  variant = input<'primary' | 'secondary' | 'navigation' | 'transparent'>('primary')
   active = input<boolean>(false)
 }

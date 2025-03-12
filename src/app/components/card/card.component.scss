@@ -7,7 +7,7 @@
   background-color: var(--color-light-100);
   box-shadow: 0 rem(13) rem(19) rgba(0, 0, 0, 0.07);
   padding: rem(10) rem(25) rem(25) rem(25);
-
+  border-radius: rem(20);
   &--horizontal {
     max-width: 100%;
     border-bottom: rem(1) solid rgba(0,0,0, 0.1);
@@ -16,6 +16,7 @@
   &--cart {
     border-bottom: none;
     box-shadow: none;
+    border-radius: rem(20) 0 0 rem(20);
   }
 
 

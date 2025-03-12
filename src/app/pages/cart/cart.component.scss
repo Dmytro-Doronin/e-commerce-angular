@@ -50,6 +50,7 @@
       align-items: end;
       background-color: var(--color-light-100);
       padding: rem(30) rem(25) rem(35) rem(25);
+      border-radius: 0 rem(20) rem(20) 0;
     }
 
     &-adder {
@@ -59,6 +60,10 @@
       padding: rem(8) rem(10);
       background-color: #D6CFC7;
       border-radius: rem(30);
+    }
+
+    &-quantity {
+      font-size: rem(20);
     }
   }
 

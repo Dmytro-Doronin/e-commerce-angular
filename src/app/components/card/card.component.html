@@ -11,7 +11,8 @@
       <a
         class="card__carousel"
         [class.card__carousel--horizontal]="variant() === 'horizontal'"
-        href="#">
+        [routerLink]="['/', 'product', card.id]"
+      >
         <app-carousel [slides]="card.images"></app-carousel>
       </a>
       <div
@@ -19,7 +20,7 @@
         [class.card__content-group--horizontal]="variant() === 'horizontal'"
       >
         <div class="card__info">
-          <a class="card__title" href="#">
+          <a class="card__title" [routerLink]="['/', 'product', card.id]">
             <h3>{{card.title}}</h3>
           </a>
           <div class="card__description">
@@ -33,8 +34,7 @@
           <span class="card__price">{{card.price | convertPipeTs}}</span>
           @if (!isCartVariant()) {
             <app-button (click)="onAddToCard()">
-
-                @if (!inCard()) {
+                @if (!inCart()) {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24"

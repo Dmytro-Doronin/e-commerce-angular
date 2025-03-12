@@ -10,15 +10,39 @@ import { FormControl } from '@angular/forms'
 export class ProductsStoreService {
   private readonly productsApiService = inject(ProductsApiService)
   private loadSuggestionProductsSubscription: Subscription | null = null
+  private loadProductSubscription: Subscription | null = null
   private loadProductsSubscription: Subscription | null = null
   private loadProductsCountSubscription: Subscription | null = null
   private searchProductsSubscription: Subscription | null = null
+  product = signal<Product | null>(null)
+  productLoading = signal<boolean>(false)
   products = signal<Product[] | null>(null)
-  productsCount = signal<number>(0)
   productsLoading = signal<boolean>(false)
+  productsCount = signal<number>(0)
   searchedProducts = signal<Product[] | null>(null)
   suggestionProducts = signal<Product[] | null>(null)
   suggestionProductsLoading = signal<boolean>(false)
+
+  loadProduct(id: string): void {
+    if (this.loadProductSubscription) {
+      this.loadProductSubscription.unsubscribe()
+    }
+    this.product.set(null)
+    this.productLoading.set(true)
+    this.loadProductSubscription = this.productsApiService.getProduct(id).subscribe({
+      next: product => {
+        this.product.set(product)
+        this.productLoading.set(false)
+        this.loadProductSubscription = null
+      },
+      error: error => {
+        console.log(error)
+      },
+      complete: () => {
+        this.productLoading.set(false)
+      },
+    })
+  }
 
   setupSearch(formControl: FormControl) {
     formControl.valueChanges

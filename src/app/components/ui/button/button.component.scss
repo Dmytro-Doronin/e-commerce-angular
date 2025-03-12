@@ -55,3 +55,14 @@
     background: var(--color-indigo-100);
   }
 }
+
+.transparent {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  padding: 0;
+  &:hover {
+    color: transparent;
+    background: none;
+  }
+}

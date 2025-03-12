@@ -31,4 +31,8 @@ export class ProductsApiService {
       }),
     })
   }
+
+  getProduct(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.baseUrl}/products/${id}`)
+  }
 }
