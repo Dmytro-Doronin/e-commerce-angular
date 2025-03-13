@@ -24,7 +24,7 @@
         </div>
       }
     } @else {
-      @for (slide of slides(); track slide) {
+      @for (slide of slides(); track slide + random()) {
         <div class="swiper-slide">
           <img [src]="slide | validateSliderImage" (error)="onImageError($event)"  alt="Slide">
         </div>
@@ -32,8 +32,25 @@
     }
   </div>
     @if (slidesLength()) {
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div
+        class="swiper-button-prev"
+        (click)="$event.stopPropagation()"
+        (keydown.enter)="$event.stopPropagation()"
+        tabindex="0"
+        role="button"
+      >
+      </div>
+
+
+      <div
+        class="swiper-button-next"
+        (click)="$event.stopPropagation()"
+        (keydown.enter)="$event.stopPropagation()"
+        tabindex="0"
+        role="button"
+      >
+
+      </div>
     }
     <div class="swiper-pagination"></div>
 </div>

@@ -8,12 +8,12 @@ import { ConvertPipe } from '../../shared/pipes/convert-pipe/convert.pipe'
 import { ButtonComponent } from '../../components/ui/button/button.component'
 import { CartService } from '../../shared/services/cart/cart.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
-import { IconComponent } from '../../components/icon/icon.component'
+import { CheckIconComponent } from '../../components/icons/check-icon/check-icon.component'
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgTemplateOutlet, ConvertPipe, ButtonComponent, LoaderComponent, IconComponent],
+  imports: [NgTemplateOutlet, ConvertPipe, ButtonComponent, LoaderComponent, CheckIconComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,10 +29,23 @@ export class ProductComponent {
   selectedImage: string | null = null
 
   constructor() {
-    if (this.id()) {
-      this.productsStoreService.loadProduct(this.id()!)
-    }
+    this.loadNewProduct()
+    this.selectProductImg()
+  }
 
+  loadNewProduct() {
+    effect(
+      () => {
+        const id = this.id()
+        if (id) {
+          this.productsStoreService.loadProduct(id)
+        }
+      },
+      { allowSignalWrites: true }
+    )
+  }
+
+  selectProductImg() {
     effect(() => {
       const product = this.product()
       if (product && product.images?.length) {

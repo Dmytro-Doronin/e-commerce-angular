@@ -49,6 +49,10 @@ export class CarouselComponent {
     ;(event.target as HTMLImageElement).src = emptyImage
   }
 
+  random() {
+    return String(Math.random())
+  }
+
   private initSwiper() {
     const container = this.swiperRef().element.nativeElement
     if (!container) return

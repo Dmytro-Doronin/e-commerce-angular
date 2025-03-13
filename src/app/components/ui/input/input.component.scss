@@ -15,4 +15,8 @@
   line-height: rem(24);
   text-align: left;
   color: var(--color-dark-900);
+  &--error {
+    border: rem(1) solid var(--color-danger-500);
+  }
+
 }

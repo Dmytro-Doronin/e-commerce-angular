@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core'
 import { ButtonComponent } from '../ui/button/button.component'
+import { ArrowLeftIconComponent } from '../icons/arrow-left-icon/arrow-left-icon.component'
+import { ArrowRightIconComponent } from '../icons/arrow-right-icon/arrow-right-icon.component'
 
 @Component({
   selector: 'app-pagination',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, ArrowLeftIconComponent, ArrowRightIconComponent],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

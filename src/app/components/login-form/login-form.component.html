@@ -1,0 +1,59 @@
+<div class="form-wrapper">
+  <h3 class="form-wrapper__title">Login</h3>
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form__inputs">
+      <app-input
+        [control]="loginForm.controls.email"
+        [id]="'email'"
+        [placeholder]="'Email'"
+        [isError]="isEmailInvalid()"
+      >
+      </app-input>
+
+      @if (isEmailInvalid()) {
+        <div
+          class="error"
+        >
+          @if (email?.errors?.['required']) {
+            <div>Email is required</div>
+          }
+          @if (email?.errors?.['email']) {
+            <div>Email is required</div>
+          }
+          @if (email?.errors?.['minlength']) {
+            <div>The Email address must not be less than 3 characters.</div>
+          }
+        </div>
+      }
+
+      <app-input
+        [control]="loginForm.controls.password"
+        [id]="'password'"
+        [placeholder]="'Password'"
+        [type]="'password'"
+        [isError]="isPasswordInvalid()"
+      >
+      </app-input>
+
+      @if (isPasswordInvalid()) {
+        <div
+          class="error"
+        >
+          @if (password?.errors?.['required']) {
+            <div>Password is required</div>
+          }
+          @if (password?.errors?.['minlength']) {
+            <div>The password must not be less than 3 characters.</div>
+          }
+        </div>
+      }
+    </div>
+    <div class="form__links">
+      <app-button>Submit</app-button>
+      <ng-content></ng-content>
+    </div>
+
+
+  </form>
+
+</div>

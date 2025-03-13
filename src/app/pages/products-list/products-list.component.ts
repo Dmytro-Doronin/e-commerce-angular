@@ -12,6 +12,7 @@ import { LoaderComponent } from '../../components/loader/loader.component'
 import { FormControl, FormGroup } from '@angular/forms'
 import { LoadProductsInterface } from '../../shared/services/products/products.interface'
 import { PaginationComponent } from '../../components/pagination/pagination.component'
+import { FilterIconComponent } from '../../components/icons/filter-icon/filter-icon.component'
 
 @Component({
   selector: 'app-products-list',
@@ -23,6 +24,7 @@ import { PaginationComponent } from '../../components/pagination/pagination.comp
     InputComponent,
     LoaderComponent,
     PaginationComponent,
+    FilterIconComponent,
   ],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss',

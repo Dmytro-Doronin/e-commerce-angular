@@ -1,0 +1,34 @@
+@use '../../styles/helpers' as *;
+
+.form-wrapper {
+  padding: rem(30);
+  border-radius: rem(10);
+  width: rem(500);
+  background-color: var(--color-light-100);
+
+  &__title {
+    margin-bottom: rem(20);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+    margin-bottom: rem(30);
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: rem(10);
+    margin-bottom: rem(30);
+  }
+}

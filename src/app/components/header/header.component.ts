@@ -14,7 +14,12 @@ import { Category } from '../../shared/services/categories/categories.interface'
 import { SearchPanelComponent } from '../search-panel/search-panel.component'
 import { RouterLink } from '@angular/router'
 import { CartService } from '../../shared/services/cart/cart.service'
-import { IconComponent } from '../icon/icon.component'
+import { LoginFormComponent } from '../login-form/login-form.component'
+import { RegistrationFormComponent } from '../registration-form/registration-form.component'
+import { CategoriesComponent } from '../icons/categories/categories.component'
+import { SearchIconComponent } from '../icons/search-icon/search-icon.component'
+import { UserIconComponent } from '../icons/user-icon/user-icon.component'
+import { CartIconComponent } from '../icons/cart-icon/cart-icon.component'
 
 @Component({
   selector: 'app-header',
@@ -25,7 +30,12 @@ import { IconComponent } from '../icon/icon.component'
     ButtonComponent,
     SearchPanelComponent,
     RouterLink,
-    IconComponent,
+    LoginFormComponent,
+    RegistrationFormComponent,
+    CategoriesComponent,
+    SearchIconComponent,
+    UserIconComponent,
+    CartIconComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -50,6 +60,19 @@ export class HeaderComponent {
         context: { $implicit: this.categories() },
       })
     }
+  }
+
+  openFormModal(template: TemplateRef<{ $implicit: null }>) {
+    if (this.modalService.getModalOptions()?.template === template) {
+      return
+    }
+    this.modalService.closeModal()
+    setTimeout(() => {
+      this.modalService.openModal({
+        template,
+        context: { $implicit: null },
+      })
+    }, 100)
   }
 
   closeModal() {

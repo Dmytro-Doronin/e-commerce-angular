@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { IconComponent } from './icon.component'
+import { MinusIconComponent } from './minus-icon.component'
 
-describe('IconComponent', () => {
-  let component: IconComponent
-  let fixture: ComponentFixture<IconComponent>
+describe('MinusIconComponent', () => {
+  let component: MinusIconComponent
+  let fixture: ComponentFixture<MinusIconComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconComponent],
+      imports: [MinusIconComponent],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(IconComponent)
+    fixture = TestBed.createComponent(MinusIconComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

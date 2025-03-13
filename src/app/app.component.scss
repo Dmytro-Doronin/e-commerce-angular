@@ -2,12 +2,15 @@
 
 
 .app {
-  background-color: var(--color-main);
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  background-color: var(--color-main);
 
 }
 .content {
   padding-top: rem(20);
+  flex-grow: 1;
 }
 
 .separator {

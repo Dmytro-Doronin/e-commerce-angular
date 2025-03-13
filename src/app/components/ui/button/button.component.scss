@@ -59,10 +59,10 @@
 .transparent {
   background: transparent;
   border-color: transparent;
-  color: transparent;
+  color: var(--color-dark-500);
   padding: 0;
   &:hover {
-    color: transparent;
+    color: var(--color-indigo-500);
     background: none;
   }
 }

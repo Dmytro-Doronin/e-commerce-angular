@@ -11,6 +11,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
 })
 export class InputComponent {
   type = input<string>('text')
+  id = input<string>('text')
   placeholder = input<string | null>('')
+  isError = input<false | undefined | boolean>(false)
   @Input() control: FormControl = new FormControl('')
 }
