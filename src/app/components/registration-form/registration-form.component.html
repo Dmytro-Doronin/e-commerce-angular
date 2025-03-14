@@ -73,7 +73,31 @@
           }
         </div>
       }
+
+      <app-input
+        [control]="registrationForm.controls.avatar"
+        [id]="'avatar'"
+        [placeholder]="'Avatar link'"
+        [type]="'text'"
+        [isError]="isPasswordInvalid()"
+      >
+      </app-input>
+
+      @if (isAvatarInvalid()) {
+        <div
+          class="error"
+        >
+          @if (password?.errors?.['required']) {
+            <div>Avatar is required</div>
+          }
+        </div>
+        @if (registrationForm.controls.avatar.errors?.['invalidAvatar']) {
+          <div class="error">Invalid avatar URL. Please use a valid image URL.</div>
+        }
+      }
     </div>
+
+
     <div class="form__links">
       <app-button>Submit</app-button>
       <ng-content></ng-content>

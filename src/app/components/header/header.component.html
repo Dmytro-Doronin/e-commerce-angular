@@ -30,9 +30,15 @@
         <app-search-icon></app-search-icon>
       </app-button>
 
-      <app-button (click)="openModal(loginForm)" [variant]="'transparent'">
-        <app-user-icon></app-user-icon>
-      </app-button>
+        @if (userImg()) {
+          <img [src]="userImg()" alt="'img'" width="24" height="24"/>
+        } @else {
+          <app-button (click)="openModal(loginForm)" [variant]="'transparent'">
+            <app-user-icon></app-user-icon>
+          </app-button>
+        }
+
+
 
       <div class="header__basket" [routerLink]="['/', 'cart']">
         @if (cartCount() !== 0) {

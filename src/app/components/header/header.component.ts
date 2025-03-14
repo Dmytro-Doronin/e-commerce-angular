@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
   output,
@@ -20,6 +21,7 @@ import { CategoriesComponent } from '../icons/categories/categories.component'
 import { SearchIconComponent } from '../icons/search-icon/search-icon.component'
 import { UserIconComponent } from '../icons/user-icon/user-icon.component'
 import { CartIconComponent } from '../icons/cart-icon/cart-icon.component'
+import { LoginStoreService } from '../../shared/services/auth/login/login-store.service'
 
 @Component({
   selector: 'app-header',
@@ -44,12 +46,14 @@ import { CartIconComponent } from '../icons/cart-icon/cart-icon.component'
 export class HeaderComponent {
   private readonly modalService = inject(ModalService)
   private readonly cartService = inject(CartService)
+  private readonly loginStoreService = inject(LoginStoreService)
 
   cartCount = this.cartService.cartCount
   categories = input<Category[] | null>(null)
   isOpen = input<boolean>(true)
   isOpenChange = output<boolean>()
   isNavModalOpen = output()
+  userImg = computed(() => this.loginStoreService.user()?.avatar)
 
   openModal(template: TemplateRef<{ $implicit: Category[] }>) {
     if (this.modalService.getModalOptions()) {
