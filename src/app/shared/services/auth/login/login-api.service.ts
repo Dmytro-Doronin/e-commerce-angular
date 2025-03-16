@@ -18,6 +18,12 @@ export class LoginApiService {
     return this.httpClient.get<profileResponseData>(`${this.baseUrl}/auth/profile`)
   }
 
+  // refreshAccessToken(refreshToken: string): Observable<{ access_token: string }> {
+  //   return this.httpClient.post<{ access_token: string }>(
+  //     'https://api.escuelajs.co/api/v1/auth/refresh-token',
+  //     { refreshToken }
+  //   )
+  // }
   refreshAccessToken(refreshToken: string): Observable<{ access_token: string }> {
     return this.httpClient.post<{ access_token: string }>(
       'https://api.escuelajs.co/api/v1/auth/refresh-token',

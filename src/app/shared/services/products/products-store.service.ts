@@ -3,12 +3,15 @@ import { ProductsApiService } from './products-api.service'
 import { debounceTime, distinctUntilChanged, Subscription, switchMap } from 'rxjs'
 import { LoadProductsInterface, Product } from './products.interface'
 import { FormControl } from '@angular/forms'
+import { AlertService } from '../alert/alert.service'
+import { ErrorType } from '../errors.interface'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsStoreService {
   private readonly productsApiService = inject(ProductsApiService)
+  alertService = inject(AlertService)
   private loadSuggestionProductsSubscription: Subscription | null = null
   private loadProductSubscription: Subscription | null = null
   private loadProductsSubscription: Subscription | null = null
@@ -35,8 +38,8 @@ export class ProductsStoreService {
         this.productLoading.set(false)
         this.loadProductSubscription = null
       },
-      error: error => {
-        console.log(error)
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
       },
       complete: () => {
         this.productLoading.set(false)
@@ -55,8 +58,8 @@ export class ProductsStoreService {
         next: products => {
           this.searchedProducts.set(products)
         },
-        error: error => {
-          console.error(error)
+        error: (error: ErrorType) => {
+          this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         },
       })
   }
@@ -80,8 +83,8 @@ export class ProductsStoreService {
           this.productsLoading.set(false)
           this.loadProductsSubscription = null
         },
-        error: error => {
-          console.log(error)
+        error: (error: ErrorType) => {
+          this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         },
         complete: () => {
           this.productsLoading.set(false)
@@ -100,8 +103,8 @@ export class ProductsStoreService {
           this.productsCount.set(products.length)
           this.loadProductsCountSubscription = null
         },
-        error: error => {
-          console.log(error)
+        error: (error: ErrorType) => {
+          this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         },
       })
   }
@@ -119,8 +122,8 @@ export class ProductsStoreService {
         this.loadSuggestionProductsSubscription = null
         this.suggestionProductsLoading.set(false)
       },
-      error: error => {
-        console.log(error)
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
       },
       complete: () => {
         this.suggestionProductsLoading.set(false)

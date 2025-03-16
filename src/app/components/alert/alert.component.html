@@ -1,0 +1,18 @@
+@if (alertContent(); as alertContent) {
+  <div class="alert"
+       [ngClass]="{
+       'alert--success': alertContent.status === 'success',
+       'alert--error': alertContent.status === 'error'
+       }">
+    <div class="alert__content">
+      @if (alertContent.status === 'success') {
+        <app-success-icon></app-success-icon>
+      } @else {
+        <app-error-icon></app-error-icon>
+      }
+      <div>{{alertContent.message}}</div>
+    </div>
+  </div>
+}
+
+

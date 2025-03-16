@@ -1,10 +1,13 @@
-import { computed, Injectable, signal } from '@angular/core'
+import { computed, inject, Injectable, signal } from '@angular/core'
 import { Product } from '../products/products.interface'
+import { AlertService } from '../alert/alert.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  alertService = inject(AlertService)
+
   cartItems = signal<{ product: Product; quantity: number }[]>([])
 
   cartCount = computed(() =>
@@ -44,6 +47,10 @@ export class CartService {
       return items
     })
     this.updateCart()
+    this.alertService.onOpenAlert({
+      message: 'Product was added to the cart list.',
+      status: 'success',
+    })
   }
 
   removeOne(id: string) {
@@ -57,6 +64,10 @@ export class CartService {
       return items
     })
     this.updateCart()
+    this.alertService.onOpenAlert({
+      message: 'Product was removed from the cart list.',
+      status: 'success',
+    })
   }
 
   addToCart = (product: Product) => {
@@ -71,11 +82,19 @@ export class CartService {
       }
     })
     this.updateCart()
+    this.alertService.onOpenAlert({
+      message: 'Product was added to the cart list.',
+      status: 'success',
+    })
   }
 
   removeFromCart(id: string) {
     this.cartItems.update(items => items.filter(item => item.product.id !== id))
     this.updateCart()
+    this.alertService.onOpenAlert({
+      message: 'Product was removed from the cart list.',
+      status: 'success',
+    })
   }
 
   clearCart() {

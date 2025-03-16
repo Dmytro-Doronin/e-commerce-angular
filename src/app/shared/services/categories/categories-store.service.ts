@@ -2,12 +2,16 @@ import { inject, Injectable, signal } from '@angular/core'
 import { CategoriesApiService } from './categories-api.service'
 import { Subscription } from 'rxjs'
 import { Category } from './categories.interface'
+import { AlertService } from '../alert/alert.service'
+import { ErrorType } from '../errors.interface'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoriesStoreService {
   categoriesApiService = inject(CategoriesApiService)
+  alertService = inject(AlertService)
+
   loadAllCategoriesSubscription: Subscription | null = null
   loadPopularCategoriesSubscription: Subscription | null = null
   loadCategoryByIdSubscription: Subscription | null = null
@@ -27,8 +31,8 @@ export class CategoriesStoreService {
         this.category.set(category)
         this.loadCategoryByIdSubscription = null
       },
-      error: err => {
-        console.log(err)
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
       },
       complete: () => {
         this.loadCategoryByIdSubscription = null
@@ -56,7 +60,8 @@ export class CategoriesStoreService {
         ])
         this.loadPopularCategoriesSubscription = null
       },
-      error: () => {
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         this.isLoadingAllCategories.set(false)
       },
       complete: () => {
@@ -78,7 +83,8 @@ export class CategoriesStoreService {
         this.popularCategories.set(categories.slice(0, 5))
         this.loadPopularCategoriesSubscription = null
       },
-      error: () => {
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         this.isLoadingPopularCategories.set(false)
       },
       complete: () => {

@@ -16,21 +16,22 @@ export class ProfileInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.loginService.getAccessToken()
 
-    if (req.method === 'GET' && req.url.includes('/auth/profile') && token) {
-      const cloned = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    if (req.method === 'GET' && req.url.includes('/auth/profile')) {
+      const cloned = token
+        ? req.clone({
+            setHeaders: { Authorization: `Bearer ${token}` },
+          })
+        : req
 
       return next.handle(cloned).pipe(
         catchError((error: HttpErrorResponse) => {
-          if (error.status === 403) {
+          if (error.status === 401) {
             return this.loginService.refreshToken().pipe(
               switchMap(newToken => {
                 const updatedRequest = req.clone({
                   setHeaders: { Authorization: `Bearer ${newToken}` },
                 })
+
                 return next.handle(updatedRequest)
               }),
               catchError(refreshError => {

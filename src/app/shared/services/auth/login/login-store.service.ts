@@ -1,8 +1,11 @@
-import { computed, inject, Injectable, signal } from '@angular/core'
+import { inject, Injectable, signal } from '@angular/core'
 import { LoginApiService } from './login-api.service'
 import { loginInputData, profileResponseData } from './login.interface'
-import { catchError, Observable, Subscription, switchMap, throwError } from 'rxjs'
+import { catchError, Observable, of, Subscription, switchMap, throwError } from 'rxjs'
 import { CookieService } from 'ngx-cookie-service'
+import { AlertService } from '../../alert/alert.service'
+import { ErrorType } from '../../errors.interface'
+import { HttpErrorResponse } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +13,14 @@ import { CookieService } from 'ngx-cookie-service'
 export class LoginStoreService {
   private cookieService = inject(CookieService)
   private loginApiService = inject(LoginApiService)
+  private alertService = inject(AlertService)
   loginSubscription: Subscription | null = null
   profileSubscription: Subscription | null = null
 
   user = signal<profileResponseData | null>(null)
-  isAuthenticated = computed(() => this.user()?.name)
+  isAuthenticated(): boolean {
+    return this.getAccessToken() !== null
+  }
 
   login(userData: loginInputData) {
     if (this.loginSubscription) {
@@ -23,14 +29,24 @@ export class LoginStoreService {
 
     this.loginSubscription = this.loginApiService.loginUser(userData).subscribe({
       next: response => {
-        this.cookieService.set('access_token', response.access_token, { path: '/', secure: true })
-        this.cookieService.set('refresh_token', response.refresh_token, { path: '/', secure: true })
+        this.cookieService.set('accessToken', response.access_token, {
+          path: '/',
+          secure: true,
+          sameSite: 'Lax',
+        })
+
+        this.cookieService.set('refreshToken', response.refresh_token, {
+          path: '/',
+          sameSite: 'None',
+          secure: false,
+        })
+
         this.getProfile()
+        this.alertService.onOpenAlert({ message: 'Login success', status: 'success' })
         this.loginSubscription = null
-        console.log('login successes')
       },
-      error: error => {
-        console.log('login', error)
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
       },
       complete: () => {
         this.loginSubscription = null
@@ -48,8 +64,8 @@ export class LoginStoreService {
         this.user.set(user)
         this.profileSubscription = null
       },
-      error: error => {
-        console.log('profile', error)
+      error: (error: ErrorType) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
       },
       complete: () => {
         this.profileSubscription = null
@@ -59,33 +75,59 @@ export class LoginStoreService {
 
   refreshToken(): Observable<string> {
     const refreshToken = this.getRefreshToken()
+
     if (!refreshToken) {
+      this.logout()
       return throwError(() => new Error('No refresh token available'))
     }
 
     return this.loginApiService.refreshAccessToken(refreshToken).pipe(
       switchMap(response => {
-        this.cookieService.set('access_token', response.access_token, { path: '/', secure: true })
-        return response.access_token
+        if (!response.access_token) {
+          return throwError(() => new Error('Invalid refresh response'))
+        }
+
+        this.cookieService.set('access_token', response.access_token, {
+          path: '/',
+          secure: true,
+          sameSite: 'Lax',
+        })
+
+        return of(response.access_token)
       }),
-      catchError(error => {
-        this.logout()
+      catchError((error: unknown) => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 401) {
+            this.logout()
+          }
+
+          this.alertService.onOpenAlert({
+            message: error.error?.message || 'unknown error',
+            status: 'error',
+          })
+        } else {
+          this.alertService.onOpenAlert({
+            message: 'Something went wrong',
+            status: 'error',
+          })
+        }
+
         return throwError(() => error)
       })
     )
   }
 
   getAccessToken(): string | null {
-    return this.cookieService.get('access_token') || null
+    return this.cookieService.get('accessToken') || null
   }
 
   getRefreshToken(): string | null {
-    return this.cookieService.get('refresh_token') || null
+    return this.cookieService.get('refreshToken') || null
   }
 
   logout(): void {
-    this.cookieService.delete('access_token', '/')
-    this.cookieService.delete('refresh_token', '/')
+    this.cookieService.delete('accessToken', '/')
+    this.cookieService.delete('refreshToken', '/')
     this.user.set(null)
   }
 }
