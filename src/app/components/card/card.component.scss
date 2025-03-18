@@ -1,5 +1,11 @@
 @use '../../styles/helpers' as *;
 
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
 .card {
   display: flex;
   max-width: rem(300);

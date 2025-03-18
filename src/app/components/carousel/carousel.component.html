@@ -26,7 +26,7 @@
     } @else {
       @for (slide of slides(); track slide + random()) {
         <div class="swiper-slide">
-          <img [src]="slide | validateSliderImage" (error)="onImageError($event)"  alt="Slide">
+          <img class="swiper-slide__small-img" [src]="slide | validateSliderImage" (error)="onImageError($event)"  alt="Slide">
         </div>
       }
     }

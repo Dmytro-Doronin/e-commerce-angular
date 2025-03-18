@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, ViewEncapsulation } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core'
 import { CarouselComponent } from '../carousel/carousel.component'
 import { Product } from '../../shared/services/products/products.interface'
 import { ButtonComponent } from '../ui/button/button.component'
@@ -23,7 +23,6 @@ import { CheckIconComponent } from '../icons/check-icon/check-icon.component'
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
 })
 export class CardComponent {
   private readonly cartService = inject(CartService)
