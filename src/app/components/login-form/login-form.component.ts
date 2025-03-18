@@ -37,10 +37,16 @@ export class LoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.loginStoreService.login({
-        email: this.loginForm.value.email!,
-        password: this.loginForm.value.password!,
-      })
+      this.loginStoreService
+        .login({
+          email: this.loginForm.value.email!,
+          password: this.loginForm.value.password!,
+        })
+        .subscribe({
+          next: () => {
+            this.loginForm.reset()
+          },
+        })
     }
   }
 }

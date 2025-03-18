@@ -3,6 +3,8 @@
 
 .cart {
   padding-bottom: rem(100);
+
+
   &__inner {
     padding-top: rem(30);
   }
@@ -15,6 +17,13 @@
     grid-template-columns: 1fr rem(500);
     min-height: rem(300);
     column-gap: rem(30);
+
+    @include laptop {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(30);
+    }
+
   }
 
   &__list {

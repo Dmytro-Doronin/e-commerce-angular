@@ -5,7 +5,12 @@
   border-radius: rem(10);
   width: rem(500);
   background-color: var(--color-light-100);
-
+  @include mobile {
+    width: rem(400);
+  }
+  @include mobile-s {
+    width: rem(300);
+  }
   &__title {
     margin-bottom: rem(20);
   }

@@ -84,6 +84,20 @@ export class HeaderComponent {
   }
 
   onMenuClicked() {
-    this.isOpenChange.emit(!this.isOpen())
+    if (!this.isOpen()) {
+      this.lockScroll()
+      this.isOpenChange.emit(!this.isOpen())
+    } else {
+      this.unlockScroll()
+      this.isOpenChange.emit(!this.isOpen())
+    }
+  }
+
+  private lockScroll() {
+    document.body.style.overflow = 'hidden'
+  }
+
+  private unlockScroll() {
+    document.body.style.overflow = 'auto'
   }
 }

@@ -22,14 +22,6 @@ export class PaginationComponent {
     Math.ceil(this.countOfProducts() / this.appPaginationChunkSize())
   )
 
-  // readonly pageIndexes = computed(() =>
-  //   [...new Array(this.arrayForIndexLength())].map((_, i) => i + 1)
-  // )
-  //
-  // setIndex(pageIndex: number) {
-  //   this.activeIndexChange.emit(pageIndex)
-  // }
-
   readonly pageIndexes = computed(() => {
     const totalPages = this.getTotalPages()
     const current = this.activeIndex()

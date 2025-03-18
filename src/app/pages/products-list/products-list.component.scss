@@ -6,6 +6,18 @@
   &__inner {
     display: grid;
     grid-template-columns: rem(300) auto;
+
+
+    @include tablet {
+      display: block;
+    }
+
+  }
+
+  &__navigation {
+    @include tablet {
+      display: none;
+    }
   }
 
   &__header {

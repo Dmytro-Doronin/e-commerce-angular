@@ -47,6 +47,10 @@
       align-items: center;
       flex-direction: row;
       column-gap: rem(20);
+
+      @include mobile {
+        flex-direction: column;
+      }
     }
   }
 

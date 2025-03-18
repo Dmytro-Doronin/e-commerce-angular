@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core'
 import { LoginApiService } from './login-api.service'
 import { loginInputData, profileResponseData } from './login.interface'
-import { catchError, Observable, of, Subscription, switchMap, throwError } from 'rxjs'
+import { catchError, Observable, of, Subscription, switchMap, tap, throwError } from 'rxjs'
 import { CookieService } from 'ngx-cookie-service'
 import { AlertService } from '../../alert/alert.service'
 import { ErrorType } from '../../errors.interface'
@@ -22,13 +22,44 @@ export class LoginStoreService {
     return this.getAccessToken() !== null
   }
 
-  login(userData: loginInputData) {
+  // login(userData: loginInputData) {
+  //   if (this.loginSubscription) {
+  //     this.loginSubscription.unsubscribe()
+  //   }
+  //
+  //   this.loginSubscription = this.loginApiService.loginUser(userData).subscribe({
+  //     next: response => {
+  //       this.cookieService.set('accessToken', response.access_token, {
+  //         path: '/',
+  //         secure: true,
+  //         sameSite: 'Lax',
+  //       })
+  //
+  //       this.cookieService.set('refreshToken', response.refresh_token, {
+  //         path: '/',
+  //         sameSite: 'None',
+  //         secure: false,
+  //       })
+  //
+  //       this.getProfile()
+  //       this.alertService.onOpenAlert({ message: 'Login success', status: 'success' })
+  //       this.loginSubscription = null
+  //     },
+  //     error: (error: ErrorType) => {
+  //       this.alertService.onOpenAlert({ message: error.message, status: 'error' })
+  //     },
+  //     complete: () => {
+  //       this.loginSubscription = null
+  //     },
+  //   })
+  // }
+  login(userData: loginInputData): Observable<unknown> {
     if (this.loginSubscription) {
       this.loginSubscription.unsubscribe()
     }
 
-    this.loginSubscription = this.loginApiService.loginUser(userData).subscribe({
-      next: response => {
+    return this.loginApiService.loginUser(userData).pipe(
+      tap(response => {
         this.cookieService.set('accessToken', response.access_token, {
           path: '/',
           secure: true,
@@ -43,15 +74,12 @@ export class LoginStoreService {
 
         this.getProfile()
         this.alertService.onOpenAlert({ message: 'Login success', status: 'success' })
-        this.loginSubscription = null
-      },
-      error: (error: ErrorType) => {
+      }),
+      catchError((error: ErrorType) => {
         this.alertService.onOpenAlert({ message: error.message, status: 'error' })
-      },
-      complete: () => {
-        this.loginSubscription = null
-      },
-    })
+        return throwError(() => error)
+      })
+    )
   }
 
   getProfile() {

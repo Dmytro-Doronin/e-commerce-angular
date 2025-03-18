@@ -19,16 +19,20 @@
         <app-logo></app-logo>
       </a>
 
-      <app-button [variant]="'secondary'" (click)="openModal(menuModalTemplate)">
-        <app-categories></app-categories>
-        Categories
-      </app-button>
+      <div class="header__control-categories">
+        <app-button [variant]="'secondary'" (click)="openModal(menuModalTemplate)">
+          <app-categories></app-categories>
+          Categories
+        </app-button>
+      </div>
+
     </div>
 
-    <div class="header__elements">
-      <app-button [variant]="'transparent'" (click)="openModal(searchPanel)">
-        <app-search-icon></app-search-icon>
-      </app-button>
+    @if (!isOpen()) {
+      <div class="header__elements">
+        <app-button [variant]="'transparent'" (click)="openModal(searchPanel)">
+          <app-search-icon></app-search-icon>
+        </app-button>
 
         @if (userImg()) {
           <img [src]="userImg()" alt="'img'" width="24" height="24"/>
@@ -38,22 +42,22 @@
           </app-button>
         }
 
-
-
-      <div class="header__basket" [routerLink]="['/', 'cart']">
-        @if (cartCount() !== 0) {
-          <div class="header__basket-round">
+        <div class="header__basket" [routerLink]="['/', 'cart']">
+          @if (cartCount() !== 0) {
+            <div class="header__basket-round">
               <span class="header__basket-round-number">{{cartCount()}}</span>
-          </div>
-       }
-        <app-cart-icon></app-cart-icon>
+            </div>
+          }
+          <app-cart-icon></app-cart-icon>
+        </div>
       </div>
-    </div>
+    }
+
 
   </div>
 
   <div class="header__menu active" [class.active]="isOpen()">
-    <app-navigation [categories]="categories()" [variant]="'burger'"></app-navigation>
+    <app-navigation [categories]="categories()" [variant]="'burger'" (burgerMenuClose)="onMenuClicked()"></app-navigation>
   </div>
 </div>
 

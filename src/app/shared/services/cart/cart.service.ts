@@ -47,10 +47,6 @@ export class CartService {
       return items
     })
     this.updateCart()
-    this.alertService.onOpenAlert({
-      message: 'Product was added to the cart list.',
-      status: 'success',
-    })
   }
 
   removeOne(id: string) {
@@ -64,10 +60,6 @@ export class CartService {
       return items
     })
     this.updateCart()
-    this.alertService.onOpenAlert({
-      message: 'Product was removed from the cart list.',
-      status: 'success',
-    })
   }
 
   addToCart = (product: Product) => {
