@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core'
+import { computed, inject, Injectable, signal } from '@angular/core'
 import { LoginApiService } from './login-api.service'
 import { loginInputData, profileResponseData } from './login.interface'
 import { catchError, Observable, of, Subscription, switchMap, tap, throwError } from 'rxjs'
@@ -16,43 +16,10 @@ export class LoginStoreService {
   private alertService = inject(AlertService)
   loginSubscription: Subscription | null = null
   profileSubscription: Subscription | null = null
-
+  private accessToken = signal<string | null>(this.getAccessToken())
   user = signal<profileResponseData | null>(null)
-  isAuthenticated(): boolean {
-    return this.getAccessToken() !== null
-  }
+  isAuthenticated = computed(() => this.accessToken() !== null)
 
-  // login(userData: loginInputData) {
-  //   if (this.loginSubscription) {
-  //     this.loginSubscription.unsubscribe()
-  //   }
-  //
-  //   this.loginSubscription = this.loginApiService.loginUser(userData).subscribe({
-  //     next: response => {
-  //       this.cookieService.set('accessToken', response.access_token, {
-  //         path: '/',
-  //         secure: true,
-  //         sameSite: 'Lax',
-  //       })
-  //
-  //       this.cookieService.set('refreshToken', response.refresh_token, {
-  //         path: '/',
-  //         sameSite: 'None',
-  //         secure: false,
-  //       })
-  //
-  //       this.getProfile()
-  //       this.alertService.onOpenAlert({ message: 'Login success', status: 'success' })
-  //       this.loginSubscription = null
-  //     },
-  //     error: (error: ErrorType) => {
-  //       this.alertService.onOpenAlert({ message: error.message, status: 'error' })
-  //     },
-  //     complete: () => {
-  //       this.loginSubscription = null
-  //     },
-  //   })
-  // }
   login(userData: loginInputData): Observable<unknown> {
     if (this.loginSubscription) {
       this.loginSubscription.unsubscribe()
@@ -94,6 +61,7 @@ export class LoginStoreService {
       },
       error: (error: ErrorType) => {
         this.alertService.onOpenAlert({ message: error.message, status: 'error' })
+        this.logout()
       },
       complete: () => {
         this.profileSubscription = null
@@ -157,5 +125,9 @@ export class LoginStoreService {
     this.cookieService.delete('accessToken', '/')
     this.cookieService.delete('refreshToken', '/')
     this.user.set(null)
+    this.alertService.onOpenAlert({
+      message: 'You have been logged out',
+      status: 'success',
+    })
   }
 }

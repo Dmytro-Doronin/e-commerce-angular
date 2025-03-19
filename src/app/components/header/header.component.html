@@ -25,17 +25,42 @@
           Categories
         </app-button>
       </div>
-
     </div>
 
     @if (!isOpen()) {
       <div class="header__elements">
+
+        @if (userImg()) {
+          <app-button>
+            <a href="https://e-commerce-admin-panel-xi.vercel.app/main">
+              Admin
+            </a>
+          </app-button>
+        }
+
         <app-button [variant]="'transparent'" (click)="openModal(searchPanel)">
           <app-search-icon></app-search-icon>
         </app-button>
 
         @if (userImg()) {
-          <img [src]="userImg()" alt="'img'" width="24" height="24"/>
+          <div class="header__profile">
+            <app-button [variant]="'transparent'" (click)="onOpenUserList()">
+              <img [src]="userImg()" alt="'img'" width="24" height="24"/>
+            </app-button>
+
+            @if (isOpenUserList()) {
+              <ul class="header__profile-list">
+                <app-button [variant]="'transparent'" (click)="onLogout()">
+                  <li class="header__profile-item">
+                    Logout
+                  </li>
+                </app-button>
+
+              </ul>
+            }
+
+          </div>
+
         } @else {
           <app-button (click)="openModal(loginForm)" [variant]="'transparent'">
             <app-user-icon></app-user-icon>

@@ -5,6 +5,7 @@ import {
   inject,
   input,
   output,
+  signal,
   TemplateRef,
 } from '@angular/core'
 import { LogoComponent } from '../logo/logo.component'
@@ -49,8 +50,10 @@ export class HeaderComponent {
   private readonly loginStoreService = inject(LoginStoreService)
 
   cartCount = this.cartService.cartCount
+
   categories = input<Category[] | null>(null)
-  isOpen = input<boolean>(true)
+  isOpen = input<boolean>(false)
+  isOpenUserList = signal<boolean>(false)
   isOpenChange = output<boolean>()
   isNavModalOpen = output()
   userImg = computed(() => this.loginStoreService.user()?.avatar)
@@ -79,6 +82,10 @@ export class HeaderComponent {
     }, 100)
   }
 
+  onLogout() {
+    this.loginStoreService.logout()
+  }
+
   closeModal() {
     this.modalService.closeModal()
   }
@@ -91,6 +98,10 @@ export class HeaderComponent {
       this.unlockScroll()
       this.isOpenChange.emit(!this.isOpen())
     }
+  }
+
+  onOpenUserList() {
+    this.isOpenUserList.set(!this.isOpenUserList())
   }
 
   private lockScroll() {
