@@ -49,7 +49,9 @@
               </tr>
             </table>
           </div>
-          <app-button [variant]="'primary'">Order</app-button>
+          @if (cartItems().length > 0) {
+            <app-cart-form (formSubmitted)="cartFormSubmit(cartAlert, $event)">Order</app-cart-form>
+          }
         </div>
       </div>
     </div>
@@ -57,3 +59,14 @@
 
 </div>
 
+<ng-template #cartAlert let-name>
+  <div class="center">
+    <div class="bg-light cart__modal">
+      <span class="cart__modal-text">
+        Thank you, {{name}}, for your order! We will send you a message soon.
+      </span>
+      <app-button (click)="onBackToMain()">Back to main</app-button>
+    </div>
+
+  </div>
+</ng-template>

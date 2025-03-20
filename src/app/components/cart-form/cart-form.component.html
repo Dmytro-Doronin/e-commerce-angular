@@ -1,0 +1,86 @@
+<div class="form-wrapper">
+  <form class="form" [formGroup]="cartForm" (ngSubmit)="onSubmit()">
+    <div class="form__inputs">
+
+      <app-input
+        [control]="cartForm.controls.name"
+        [id]="'name'"
+        [placeholder]="'Name'"
+        [isError]="isNameInvalid()"
+      >
+      </app-input>
+
+      @if (isNameInvalid()) {
+        <div
+          class="error"
+        >
+          @if (name?.errors?.['required']) {
+            <div>Name is required</div>
+          }
+          @if (name?.errors?.['minlength']) {
+            <div>The Name must not be less than 3 characters.</div>
+          }
+          @if (name?.errors?.['maxlength']) {
+            <div>The Name must not be more than 8 characters.</div>
+          }
+        </div>
+      }
+
+      <app-input
+        [control]="cartForm.controls.email"
+        [id]="'email'"
+        [placeholder]="'Email'"
+        [isError]="isEmailInvalid()"
+      >
+      </app-input>
+
+      @if (isEmailInvalid()) {
+        <div
+          class="error"
+        >
+          @if (email?.errors?.['required']) {
+            <div>Email is required</div>
+          }
+          @if (email?.errors?.['email']) {
+            <div>Email is required</div>
+          }
+          @if (email?.errors?.['minlength']) {
+            <div>The Email address must not be less than 3 characters.</div>
+          }
+        </div>
+      }
+
+      <app-input
+        [control]="cartForm.controls.address"
+        [id]="'address'"
+        [placeholder]="'Address'"
+        [type]="'text'"
+        [isError]="isAddressInvalid()"
+      >
+      </app-input>
+
+      @if (isAddressInvalid()) {
+        <div
+          class="error"
+        >
+          @if (address?.errors?.['required']) {
+            <div>Address is required</div>
+          }
+          @if (address?.errors?.['minlength']) {
+            <div>The address must not be less than 3 characters.</div>
+          }
+        </div>
+      }
+
+
+      <div class="form__links">
+        <app-button>
+          <ng-content></ng-content>
+        </app-button>
+      </div>
+
+    </div>
+  </form>
+
+</div>
+

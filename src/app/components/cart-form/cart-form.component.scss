@@ -1,0 +1,40 @@
+@use '../../styles/helpers' as *;
+
+
+.form-wrapper {
+  border-radius: rem(10);
+
+  @include mobile {
+    width: rem(400);
+  }
+  @include mobile-s {
+    width: rem(300);
+  }
+  &__title {
+    margin-bottom: rem(20);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+    margin-bottom: rem(30);
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: rem(10);
+    margin-bottom: rem(30);
+  }
+}
+
+
