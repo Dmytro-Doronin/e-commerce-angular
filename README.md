@@ -1,27 +1,62 @@
-# ECommerceAngular
+# 🛍️ E-Commerce Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+**E-Commerce Angular** is a front-end web application for an online store, built with the latest technologies including Angular 18 (Standalone Components), RxJs. The project supports features like shopping cart, user authentication, product filtering, and an admin panel for managing products.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📸 Screenshots
 
-## Code scaffolding
+### 🖥️ Homepage
+![Homepage](./screenshots/home.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 🛒 Product Details & Cart
+![Product Details](./screenshots/cart.png)
 
-## Build
+### 📋 Admin Panel
+![Admin Panel](./screenshots/admin.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 🚀 Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular 18** (Standalone Components)
+- **RxJS** – Reactive programming
+- **SCSS** – Styling
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 📦 Features
 
-## Further help
+- ✅ User registration and login
+- ✅ Product listing with filters with price.
+- ✅ Product details page
+- ✅ Add/remove items to cart
+- ✅ Admin panel for product management
+- ✅ Responsive design
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+### 🔗 Live Demo
+
+Check out the deployed version of this project:  
+👉 [**E-Commerce Angular — Live Site**](https://e-commerce-angular-self.vercel.app)
+
+---
+
+## 🧑‍💻 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Dmytro-Doronin/e-commerce-angular.git
+
+cd e-commerce-angular
+
+### 2. Install dependencies
+
+npm install
+
+### 3.  Run the development server
+
+ng serve
+
+Open http://localhost:4200 in your browser.
