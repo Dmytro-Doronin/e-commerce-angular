@@ -16,6 +16,8 @@
   &__list {
     width: var(--nav-width);
     border-radius: rem(10);
+    max-height: rem(700);
+    overflow-y: auto;
   }
 
   &__item {
